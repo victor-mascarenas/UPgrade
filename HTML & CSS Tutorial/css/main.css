@@ -13,8 +13,84 @@ body {
   margin: 0;
 }
 
+.features-list {
+  margin: 0;
+  padding-left: .1em;
+}
+
+.features-list li {
+  font-size: 1.1em;
+  margin-bottom: 1em;
+  margin-left: 2em;
+  position: relative;
+}
+
+.features-list li:before {
+  background-image: url("../images/bullet.svg");
+  background-size: contain;
+  content: '';
+  height: 20px;
+  left: -2em;
+  margin-right: .5em;
+  position: absolute;
+  width: 20px;
+}
+
+.features-section {
+  background: #20272E;
+  color: white;
+}
+
+.features-section img {
+  display: none;
+}
+
+h2 {
+  font-size: 2em;
+}
+
 .hero {
   text-align: center;
+}
+
+.hero-img {
+  margin-top: 3em;
+  width: 70%;
+}
+
+iframe {
+  height: 300px;
+  width: 100%;
+}
+
+input, textarea {
+  border: 1px solid gray;
+  border-radius: .3em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 1em;
+  padding: .8em;
+  width: 100%;
+}
+
+input[type="submit"] {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5em;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 5em;
+  padding: .8em 2em;
+  width: unset;
+}
+
+label {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: .5em;
 }
 
 .left-col h1 {
@@ -27,7 +103,9 @@ body {
   background: var(--primary-color);
   border-radius: 5em;
   color: white;
+  display: inline-block;
   font-size: 1.4em;
+  font-weight: bold;
   padding: .6em 1.3em;
   text-decoration: none;
 }
@@ -37,6 +115,53 @@ body {
   font-weight: bold;
   letter-spacing: .3em;
   text-transform: uppercase;
+}
+
+.left-col .watch-video-cta {
+  display: block;
+  margin-top: 1em;
+}
+
+.left-col .watch-video-cta img {
+  margin-right: .5em;
+}
+
+.menu-btn {
+  display: block;
+}
+
+.mobile-menu-exit {
+  cursor: pointer;
+  float: right;
+  margin: .5em;
+}
+
+nav {
+  background: #20272E;
+  height: 100vh;
+  padding: 1em;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 66%;
+  z-index: 999;
+}
+
+nav .primary-nav {
+  margin-top: 5em;
+}
+
+nav li a {
+  color: white;
+  display: block;
+  font-size: 1.3em;
+  padding: .5em;
+  text-align: right;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  font-weight: bold;
 }
 
 .navbar {
@@ -72,6 +197,28 @@ body {
 
 section {
   padding: 5em 2em;
+}
+
+.testimonials-section {
+  background: var(--primary-color);
+  color: white;
+}
+
+.testimonials-section li {
+  background: #006BD6;
+  border-radius: 1em;
+  margin: 0 auto 5em auto;
+  padding: 2em 1em;
+  text-align: center;
+  width: 80%;
+}
+
+.testimonials-section li img {
+  border: 5px solid #006BD6;
+  border-radius: 50%;
+  height: 5em;
+  margin-top: -4.5em;
+  width: 5em;
 }
 
 ul {

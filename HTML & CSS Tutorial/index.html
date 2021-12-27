@@ -77,7 +77,7 @@
     </section>
     <section class="features-section">
         <div class="container">
-            <ul>
+            <ul class="features-list">
                 <li>
                     Unlimited Tasks
                 </li>
@@ -154,5 +154,17 @@
             </div>
         </div>
     </section>
+    <script>
+        const mobileBtn = document.getElementById('mobile-cta'),
+            nav = document.querySelector('nav'),
+            mobileBtnExit = document.getElementById('mobile-exit');
+        mobileBtn.addEventListener('click', () => {
+            alert(nav);
+            nav.classList.add('menu-btn');
+        });
+        mobileBtnExit.addEventListener('click', () => {
+            nav.classList.remove('menu-btn');
+        });
+    </script>
 </body>
 </html>
