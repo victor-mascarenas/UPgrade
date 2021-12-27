@@ -12,12 +12,7 @@
 <body>
     <div class="navbar">
         <div class="container">
-            <a class="logo" href="#">
-                Remember
-                <span>
-                    That
-                </span>
-            </a>
+            <a class="logo" href="#">Remember<span>That</span></a>
             <img id="mobile-cta" class="mobile-menu" src="images/menu.svg" alt="hamburger menu">
             <nav>
                 <img id="mobile-exit" class="mobile-menu-exit" src="images/exit.svg" alt="Close menu">
@@ -159,7 +154,6 @@
             nav = document.querySelector('nav'),
             mobileBtnExit = document.getElementById('mobile-exit');
         mobileBtn.addEventListener('click', () => {
-            alert(nav);
             nav.classList.add('menu-btn');
         });
         mobileBtnExit.addEventListener('click', () => {
