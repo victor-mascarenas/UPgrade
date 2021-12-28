@@ -20,7 +20,7 @@ if (x > 5 && y > 10) {
     console.log('x is more than 5 and y is more than 10')
 }
 
-//Thernary operator
+//Ternary operator
 const val = 10;
 const color = val > 10 ? 'red' : 'blue';
 console.log(`Color: ${color}`);
