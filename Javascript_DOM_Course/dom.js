@@ -123,16 +123,80 @@ itemsList.children[1].style.backgroundColor = 'yellow'; */
 //itemsList.previousElementSibling.style.color = 'green';
 
 //Create element
-var newDiv = document.createElement('div');
+/* var newDiv = document.createElement('div');
 newDiv.className = 'hello';
 newDiv.id = 'hello1';
-newDiv.setAttribute('title', 'Hello Div');
+newDiv.setAttribute('title', 'Hello Div'); */
 
 //Create text node
-var newDivText = document.createTextNode('Hello World');
-newDiv.appendChild(newDivText);
+/* var newDivText = document.createTextNode('Hello World');
+newDiv.appendChild(newDivText); */
 
-var container = document.querySelector('header .container');
+/* var container = document.querySelector('header .container');
 var h1 = document.querySelector('header h1');
 container.insertBefore(newDiv, h1);
-newDiv.style.fontSize = '30px';
+newDiv.style.fontSize = '30px'; */
+
+//Events
+//var button = document.getElementById('button');
+//button.addEventListener('click', buttonClicked);
+//function buttonClicked(e) {
+    //console.log('Button clicked');
+    //document.getElementById('header-title').textContent = 'Changed';
+    //document.querySelector('#main').style.backgroundColor = 'gray';
+    /* console.log(e.target);
+    var output = document.getElementById('output');
+    output.innerHTML = '<h3>' + e.target.id + '</h3>';
+
+    console.log(e.type); *///Type of the event
+    //console.log(e.clientX);
+    //console.log(e.clientY);
+    //console.log(e.offsetX);
+    //console.log(e.offsetY);
+    /* console.log(e.altKey);//keys presed
+    console.log(e.ctrlKey);
+    console.log(e.shiftKey); */
+//}
+
+//var button = document.getElementById('button');
+//button.addEventListener('click', runEvent);
+//button.addEventListener('dblclick', runEvent);
+//button.addEventListener('mousedown', runEvent);
+//button.addEventListener('mouseup', runEvent);
+//var box = document.getElementById('box');
+/* box.addEventListener('mouseenter', runEvent);
+box.addEventListener('mouseleave', runEvent);
+box.addEventListener('mouseover', runEvent);
+box.addEventListener('mouseout', runEvent); */
+//box.addEventListener('mousemove', runEvent);
+
+var itemInput = document.querySelector('input[type=text]');
+var form = document.querySelector('form');
+var select = document.querySelector('select');
+//itemInput.addEventListener('keydown', runEvent);
+//itemInput.addEventListener('keyup', runEvent);
+//itemInput.addEventListener('keypress', runEvent);
+//itemInput.addEventListener('focus', runEvent);
+//itemInput.addEventListener('blur', runEvent);
+//itemInput.addEventListener('cut', runEvent);
+//itemInput.addEventListener('paste', runEvent);
+//itemInput.addEventListener('input', runEvent);//Any change
+
+//select.addEventListener('change', runEvent);
+
+form.addEventListener('submit', runEvent);
+
+function runEvent(e) {
+    e.preventDefault();
+    console.log(`Event type: ${e.type}`);
+
+    //console.log(e.target.value);
+
+    //document.body.style.display = 'none';
+    //console.log(e.target.value);
+    //document.getElementById('output').innerHTML = `<h3>${e.target.value}</h3>`;
+    /* var output = document.getElementById('output');
+    output.innerHTML = `<h3>MouseX: ${e.offsetX} </h3><h3>MouseY: ${e.offsetY} </h3>`; */
+    //box.style.backgroundColor = `rgb(${e.offsetX},${e.offsetY},40)`;
+    //document.body.style.backgroundColor = `rgb(${e.offsetX},${e.offsetY},40)`;
+}
