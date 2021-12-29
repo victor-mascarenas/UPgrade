@@ -8,7 +8,7 @@ function loadUsers() {
             //console.log(users);
             var output = '';
             for(let user of users) {
-                output += `<div class="user"><img src="${user.avatar_url}" width="70" height="70"><ul><li>${user.id}</li><li>${user.login}</li></ul></div>`;
+                output += `<div class="user"><img src="${user.avatar_url}" width="70" height="70" class="img"><ul class="ul"><li class="id-head">${user.id}</li><li>${user.login}</li></ul></div>`;
             }
             document.getElementById('users').innerHTML = output;
         }

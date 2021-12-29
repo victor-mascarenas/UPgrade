@@ -1,5 +1,26 @@
+.button {
+    background: #147dd3;
+    border: none;
+    border-radius: .5em;
+    color: white;
+    height: 30px;
+}
+.button:hover {
+    background: #008cff;
+}
+.id-head {
+    font-weight: bold;
+}
+.img {
+    border: solid 2px #147dd3;
+    border-radius: 50%;
+}
+.ul {
+    list-style: none;
+}
 .user {
     background: #f4f4f4;
+    border-radius: 1em;
     display: flex;
     margin-bottom: 10px;
     padding: 10px;
