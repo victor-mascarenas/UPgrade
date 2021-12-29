@@ -2,6 +2,8 @@
 
 function foo () {//Global object
     console.log('Hello');
+
+    this.abc = def;
     //console.log(this);
 }
 foo();//Method 1: normal
@@ -17,4 +19,4 @@ obj.foo();//Method 2: as an object property
 
 new foo();//Method 3: as a constructor
 
-//Method 4
+foo.call({})//Method 4: with call. It binds 'this.abc' to de object passed as an argument for 'call'

@@ -22,12 +22,36 @@ function createBicycle(cadence, speed, gear) {
 } */
 
 //Constructor function with upper camel case
-function Bicycle(cadence, speed, gear) {
+function Bicycle(cadence, speed, gear, tirePreassure) {
     this.cadence = cadence;
     this.speed = speed;
     this.gear = gear;
+    this.tirePreassure = tirePreassure;
+
+    /* this.inflateTires = function (value) {
+        this.tirePreassure += value;
+    } */
 }
 
 //var bicycle3 = new bicycleConstructor(20, 5, 1);
 
-var bicycle3 = new Bicycle(20, 5, 1);
+var bicycle3 = new Bicycle(20, 5, 1, 25);
+//bicycle3.inflateTires(3);
+//console.log(bicycle3);
+
+function Mechanic(name) {
+    this.name = name;
+
+    this.inflateTires = function (bicycle, value) {
+        bicycle.tirePreassure += value;
+    }
+}
+
+var mike = new Mechanic('Mike');
+
+//mike.inflateTires = bicycle3.inflateTires;
+//mike.inflateTires(3);//Mike doesnt have tirePreassure property
+//mike.inflateTires.call(bicycle3);//Binding bicycle3 to inflateTires in Mike
+
+mike.inflateTires(bicycle3, 3);
+console.log(bicycle3);
