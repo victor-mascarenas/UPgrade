@@ -49,5 +49,16 @@ myPizza.Toppings = 'pineapple';
 console.log(myPizza.toppings); */
 
 const mySpecialPizza = new SpecialtyPizza('medium');
-mySpecialPizza.slice();
+//mySpecialPizza.slice();
 
+//Factory function (real private properties)
+function pizzaFactory(pSize) {
+    const crust = 'original';
+    const size = pSize;
+    return {
+        bake: () => console.log(`Baking a ${size} ${crust} pizza`)
+    }
+}
+
+const myPizza2 = pizzaFactory('small');
+//myPizza2.bake();
