@@ -1,8 +1,15 @@
 class Pizza {
+    #sauce = 'traditional';//private
+    #size;
+    crust = 'original';//Public
+
     constructor (/* pizzaType,  */pizzaSize) {
         //Naming convention for private properties (_name)
-        this._size = pizzaSize;
-        this._crust = 'original';
+        /* this._size = pizzaSize;
+        this._crust = 'original'; */
+        //this.size = pizzaSize;
+        this.#size = pizzaSize;
+        //this.crust = 'original';
         //this.pizzaType = pizzaType;
         //this.toppings = [];
     }
@@ -24,7 +31,15 @@ class Pizza {
     /* bake () {
         console.log(`Baking a ${this.size} ${this.crust} ${this.pizzaType} pizza`);
     } */
+    hereYouGo() {
+        console.log(`Here ir your ${this.crust} ${this.#sauce} sauce ${this.#size} pizza`);
+    }
 }
+
+const myPizzaX = new Pizza('large');
+//myPizzaX.hereYouGo();
+//console.log(myPizzaX.Crust);OK cause is public
+//console.log(myPizzaX.sauce);Undefined cause is private
 
 class SpecialtyPizza extends Pizza {
     constructor(pizzaSize) {
@@ -62,3 +77,4 @@ function pizzaFactory(pSize) {
 
 const myPizza2 = pizzaFactory('small');
 //myPizza2.bake();
+
