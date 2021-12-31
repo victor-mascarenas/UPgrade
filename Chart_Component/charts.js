@@ -19,48 +19,45 @@ class Chart extends HTMLElement {
     }
     async getData() {
         const data = await fetch(this.getAttribute('data-url'))
-            .then((res) => res.json())
-            .then((json) => {
-                return json.filter((user) => user.address.geo.lng > 0);
-            });
+            .then((res) => res.json());
         this.loadChart(data);
     }
-    loadChart(data) {
+    async loadChart(rawData) {
+        const title = this.getAttribute('title');
+        const fields = this.getAttribute('fields').split(',');
+        const dataArray = [fields];
+        await rawData.data.forEach(element => {
+            let dataFieldArray = [];
+            fields.forEach((field) => dataFieldArray.push(element[field]));
+            dataArray.push(dataFieldArray);
+        });
         if (this.getAttribute('type') == 'bar') {
-            this.loadBarChart(data);
+            this.loadBarChart(title, dataArray);
         } else {
-            this.loadPieChart(data);
+            this.loadPieChart(title, dataArray);
         }
     }
-    loadBarChart(rawData) {
+    loadBarChart(title, dataArray) {
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(() => {
-            const dataArray = [['User', 'Longitude']];
-            rawData.forEach(user => {
-                dataArray.push([user.name, parseInt(user.address.geo.lng)]);
-            });
             var data = google.visualization.arrayToDataTable(dataArray);
             var options = {
-                title: "User localization longitude",
+                title: title,
                 width: 600,
                 height: 400,
-                bar: { groupWidth: "95%" },
+                bar: { groupWidth: "80%" },
                 legend: { position: "none" },
             };
             var chart = new google.visualization.ColumnChart(this.shadowRoot.querySelector('#chart'));
             chart.draw(data, options);
         });
     }
-    loadPieChart(rawData) {
+    loadPieChart(title, dataArray) {
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(() => {
-            const dataArray = [['User', 'Longitude']];
-            rawData.forEach(user => {
-                dataArray.push([user.name, parseInt(user.address.geo.lng)]);
-            });
             var data = google.visualization.arrayToDataTable(dataArray);
             var options = {
-                title: 'User localization longitude'
+                title: title
             };
             var chart = new google.visualization.PieChart(this.shadowRoot.querySelector('#chart'));
             chart.draw(data, options);
