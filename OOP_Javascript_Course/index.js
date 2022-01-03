@@ -1,25 +1,19 @@
-let x = {value: 10};
-let y = x;
-
-x.value = 20;
-
-//console.log(x);
-//console.log(y);
-
-/* let number = 10;
-
-function increase(number){
-    number++;
+function Circle(radius) {
+    this.radius = radius;
+    this.draw = () => {
+        console.log('draw');
+    }
 }
 
-increase(number);
-console.log(number); */
+const circle = new Circle(10);
 
-let obj = {val: 10};
+circle.location = {x: 1};
+circle['location'] = {x: 1};
 
-function increase(obj){
-    obj.val++;
-}
+const propertyname = 'location';
+circle[propertyname] = 3;
 
-increase(obj);
-console.log(obj);
+console.log(circle);
+
+delete circle.location;
+delete circle['location'];
