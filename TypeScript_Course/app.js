@@ -1,4 +1,5 @@
 //Function which can combine numbers or strings
+//function combine (input1: number | string, input2: number | string, resultConversion: 'as-number' | 'as-text'/*Only accepts this 2 values*/) {
 function combine(input1, input2, resultConversion /*Only accepts this 2 values*/) {
     var result;
     if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number') {

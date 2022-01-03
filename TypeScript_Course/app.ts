@@ -1,6 +1,10 @@
+type Combinable = number | string;
+type ConversionDescriptor = 'as-number' | 'as-text';
+
 //Function which can combine numbers or strings
-function combine (input1: number | string, input2: number | string, resultConversion: 'as-number' | 'as-text'/*Only accepts this 2 values*/) {
-    let result: number | string;
+//function combine (input1: number | string, input2: number | string, resultConversion: 'as-number' | 'as-text'/*Only accepts this 2 values*/) {
+function combine (input1: Combinable, input2: Combinable, resultConversion: ConversionDescriptor/*Only accepts this 2 values*/) {//Using Combinable and ConversionDescriptor type
+    let result: Combinable;
     if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number') {
     //if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-nuber') {//Error, 'as-nuber' not allowed
         result = +input1 + +input2;
