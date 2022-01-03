@@ -7,13 +7,18 @@ function Circle(radius) {
 
 const circle = new Circle(10);
 
-circle.location = {x: 1};
-circle['location'] = {x: 1};
+//Looping
+for (let key in circle) {
+    if (typeof circle[key] !== 'function') {
+        console.log(key, circle[key]);
+    }
+}
 
-const propertyname = 'location';
-circle[propertyname] = 3;
+//Getting keys
+const keys = Object.keys(circle);
+console.log(keys);
 
-console.log(circle);
-
-delete circle.location;
-delete circle['location'];
+//Checking existence
+if ('radius' in circle) {
+    console.log('Circle has a radius');
+}
