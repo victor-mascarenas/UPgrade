@@ -6,9 +6,9 @@ function Circle(radius) {
         y: 0
     };
 
-    this.getDefaultLocation = function() {
+    /* this.getDefaultLocation = function() {
         return defaultLocation;
-    }
+    } */
 
     this.draw = () => {
         console.log('draw');
@@ -31,4 +31,4 @@ function Circle(radius) {
 const circle = new Circle(10);
 circle.defaultLocation = 1;
 //circle.draw();
-console.log(circle.defaultLocation);
+//console.log(circle.defaultLocation);
