@@ -1,13 +1,20 @@
 //const person:object = {
-/* const person: {
+const person: {
     name:string;
     age:number;
-} = { *///same as object
-const person = {
+    hobbies:string[];
+    role:[number, string];//tupla
+} = { //same as object
+//const person = {
     name: 'Maximilium',
     age: 30,
-    hobbies: ['Sports', 'Cooking']//String array
+    hobbies: ['Sports', 'Cooking'],//String array
+    role: [2, 'author']
 }
+
+//person.role.push('admin');//TS doesnt check this
+//person.role[1] = 10;
+//person.role = [0, 'admin', 'user'];//Error, lenght has to be 2
 
 let favoriteActivities:string[];
 //favoriteActivities = ['sports', 1];//Error, is string array
