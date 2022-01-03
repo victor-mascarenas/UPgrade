@@ -1,35 +1,25 @@
-//Factories
-function createCircle(radius) {
-    return {
-        radius,
-        draw: () => {
-            console.log('draw');
-        }
-    };
+let x = {value: 10};
+let y = x;
+
+x.value = 20;
+
+//console.log(x);
+//console.log(y);
+
+/* let number = 10;
+
+function increase(number){
+    number++;
 }
 
-//const circle = createCircle(3);
+increase(number);
+console.log(number); */
 
-//Constructor function
+let obj = {val: 10};
 
-function Circle(radius) {
-    this.radius = radius;
-    this.draw = () => {
-        console.log('draw');
-    }
+function increase(obj){
+    obj.val++;
 }
 
-console.log(Circle.name);
-console.log(Circle.lenght);
-console.log(Circle.constructor);
-
-const Circle1 = new Function('radius', `this.radius = radius;
-this.draw = () => {
-    console.log('draw');
-}`);
-
-const circle = new Circle1(1);
-
-console.log(circle);
-
-const circle2 = new Circle(1);
+increase(obj);
+console.log(obj);
