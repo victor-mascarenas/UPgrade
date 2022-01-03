@@ -1,20 +1,20 @@
-function add(n1, n2, printResult, resultPhrase) {
-    /* if (typeof n1 !== 'number' || typeof n2 !== 'number') {
-        throw new Error('Incorrect input');
-    } */
-    var result = n1 + n2;
-    if (printResult) {
-        console.log("".concat(resultPhrase, " ").concat(result));
-    }
-    else {
-        return n1 + n2;
-    }
+//const person:object = {
+/* const person: {
+    name:string;
+    age:number;
+} = { */ //same as object
+var person = {
+    name: 'Maximilium',
+    age: 30,
+    hobbies: ['Sports', 'Cooking'] //String array
+};
+var favoriteActivities;
+//favoriteActivities = ['sports', 1];//Error, is string array
+favoriteActivities = ['Sports'];
+//let favoriteActivities:any[];
+//favoriteActivities = ['sports', 1];//No error
+console.log(person.name);
+for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
+    var hobby = _a[_i];
+    console.log(hobby.toUpperCase());
 }
-var number1 = 5;
-//const number1 = '5';
-var number2 = 2.8;
-var printResult = true;
-var resultPhrase = 'Result is: ';
-//const result = add(number1, number2, printResult);
-add(number1, number2, printResult, resultPhrase);
-//console.log(result);
