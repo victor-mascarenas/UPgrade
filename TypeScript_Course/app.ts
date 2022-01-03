@@ -1,30 +1,34 @@
-type Combinable = number | string;
-type ConversionDescriptor = 'as-number' | 'as-text';
-
-//Function which can combine numbers or strings
-//function combine (input1: number | string, input2: number | string, resultConversion: 'as-number' | 'as-text'/*Only accepts this 2 values*/) {
-function combine (input1: Combinable, input2: Combinable, resultConversion: ConversionDescriptor/*Only accepts this 2 values*/) {//Using Combinable and ConversionDescriptor type
-    let result: Combinable;
-    if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number') {
-    //if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-nuber') {//Error, 'as-nuber' not allowed
-        result = +input1 + +input2;
-    } else {
-        result = input1.toString() + input2.toString();
-    }
-    //const result = input1 + input2;
-    /* if (resultConversion === 'as-number') {
-        result = +result;
-    } else {
-        result = result.toString();
-    } */
-    return result;
+function add(n1: number, n2: number): number {
+//function add(n1: number, n2: number): string {//Error
+    return n1 + n2;
 }
 
-const combinedAges = combine(30, 26, 'as-number');
-console.log(combinedAges);
+function printResult(num: number) {//Void return type (:void)
+//function printResult(num: number): undefined {//not valid
+    console.log(`Result: ${num}`);
+}
 
-const combinedAgesS = combine('30', '26', 'as-number');
-console.log(combinedAgesS);
+//With callback function
+function addAndHandle(n1:number, n2:number, cb:(num:number) => void) {
+    const result = n1 + n2;
+    cb(result);
+}
 
-const combinedNames = combine('Max', 'Anna', 'as-text');
-console.log(combinedNames);
+printResult(add(5, 12));
+
+//let combineValues: Function;
+let combineValues: (a:number, b:number) => number;//Accepts any function which has 2 parameters (numbers) and returns a number
+
+combineValues = add;//Assigning function to variable
+//combineValues = printResult(5);//Error
+
+console.log(combineValues(8, 8));//Using variable with 'add' type
+
+//let someValue: undefined;
+
+addAndHandle(10, 20, (result) => {
+    console.log(result);
+});
+/* addAndHandle(10, 20, (result, b) => {//Error, expecting only one parameter
+    console.log(result);
+}); */
