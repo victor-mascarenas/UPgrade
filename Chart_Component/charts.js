@@ -18,15 +18,18 @@ class Chart extends HTMLElement {
         });
     }
     async getData() {
-        const data = await fetch(this.getAttribute('data-url'))
-            .then((res) => res.json());
-        this.loadChart(data);
+        await fetch(this.getAttribute('data-url'))
+            .then((res) => res.json())
+            .then((data) => this.load(data))
+            .catch((error) => {
+                console.log(`Error: ${error.message}`);
+            });
     }
-    async loadChart(rawData) {
+    async load(fetchedData) {
         const title = this.getAttribute('title');
         const fields = this.getAttribute('fields').split(',');
         const dataArray = [fields];
-        await rawData.data.forEach(element => {
+        await fetchedData.data.forEach(element => {
             let dataFieldArray = [];
             fields.forEach((field) => dataFieldArray.push(element[field]));
             dataArray.push(dataFieldArray);
