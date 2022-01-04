@@ -1,5 +1,6 @@
-var userInput;
-var userName;
+"use strict";
+let userInput;
+let userName;
 userInput = 'Max';
 userInput = 5;
 //userName = userInput;//Error (no error with 'any')
