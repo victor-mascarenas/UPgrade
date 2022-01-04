@@ -1,15 +1,10 @@
-const template = document.createElement('template');
-template.innerHTML = `
-    <div id="chart">
-
-    </div>
-`;
-
 class Chart extends HTMLElement {
     constructor() {
         super();
         this.addShadow('open');
+        const template = document.querySelector('#user-chart-template');
         this.shadowRoot.appendChild(template.content.cloneNode(true));
+        this.getData();
     }
 
     addShadow (mode) {
@@ -68,7 +63,10 @@ class Chart extends HTMLElement {
     }
 
     connectedCallback() {
-        this.getData();
+        
+    }
+    disconnectedCallback() {
+        
     }
 }
 
