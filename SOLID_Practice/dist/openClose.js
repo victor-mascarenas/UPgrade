@@ -11,7 +11,7 @@ class CustomerO {
 }
 class ExistingCustomer {
     add(database) {
-        database.add();
+        database.addExistingCustomer();
     }
 }
 const database = new Database_1.default();

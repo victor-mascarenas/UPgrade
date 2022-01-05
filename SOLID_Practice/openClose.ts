@@ -30,12 +30,12 @@ class CustomerO implements ICustomer {
 
 class ExistingCustomer implements ICustomer {
     add(database: Database): void {
-        database.add();
+        database.addExistingCustomer();
     }
 }
 
 const database = new Database();
-const customers = [new CustomerO(), new ExistingCustomer()];
+const customers: ICustomer[] = [new CustomerO(), new ExistingCustomer()];
 customers.forEach((customer: ICustomer) => {
     customer.add(database);
 });
