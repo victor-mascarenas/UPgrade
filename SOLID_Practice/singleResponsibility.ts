@@ -1,8 +1,5 @@
-class Database {
-    add(): void {
-        console.log('Added');
-    }
-}
+import Database from './Database';
+import Logger from './Logger';
 
 //Bad example
 /* class Customer {
@@ -15,14 +12,8 @@ class Database {
     }
 } */
 
-class Logger {
-    log(message: string): void {
-        console.log(`An error occurred: ${message}`);
-    }
-}
-
 //S applied: logger class added to perform log operation
-class Customer {
+class CustomerS {
     #logger = new Logger();
 
     add(database: Database): void {

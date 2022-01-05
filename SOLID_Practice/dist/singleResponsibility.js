@@ -4,12 +4,12 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _Customer_logger;
-class Database {
-    add() {
-        console.log('Added');
-    }
-}
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var _CustomerS_logger;
+Object.defineProperty(exports, "__esModule", { value: true });
+const Logger_1 = __importDefault(require("./Logger"));
 //Bad example
 /* class Customer {
     add(database: Database): void {
@@ -20,23 +20,18 @@ class Database {
         }
     }
 } */
-class Logger {
-    log(message) {
-        console.log(`An error occurred: ${message}`);
-    }
-}
 //S applied: logger class added to perform log operation
-class Customer {
+class CustomerS {
     constructor() {
-        _Customer_logger.set(this, new Logger());
+        _CustomerS_logger.set(this, new Logger_1.default());
     }
     add(database) {
         try {
             database.add();
         }
         catch (error) {
-            __classPrivateFieldGet(this, _Customer_logger, "f").log(error.message);
+            __classPrivateFieldGet(this, _CustomerS_logger, "f").log(error.message);
         }
     }
 }
-_Customer_logger = new WeakMap();
+_CustomerS_logger = new WeakMap();
