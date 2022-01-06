@@ -2,18 +2,29 @@ import APIData from "./APIData.js";
 
 class Chart extends HTMLElement {
     #apiData;
+    #chartOptions;
+    #chartData;
+    #chart;
+    #readyToDraw;
 
     constructor() {
         super();
+        this.#readyToDraw = false;
         this.#apiData = new APIData();
         this.addShadow('open');
         this.init();
     }
 
+    addShadow (mode) {
+        this.attachShadow({
+            mode: mode
+        });
+    }
     async init() {
         const templateContent = await this.getTemplate();
         this.loadTemplate(templateContent);
         this.shadowRoot.querySelector('#reload').addEventListener('click', this.graph.bind(this));
+        window.addEventListener('resize', this.onResize.bind(this));
         this.graph();
     }
     getTemplate() {
@@ -31,11 +42,6 @@ class Chart extends HTMLElement {
     async graph() {
         const data = await this.#apiData.getData(this.getAttribute('data-url'));
         this.load(data);
-    }
-    addShadow (mode) {
-        this.attachShadow({
-            mode: mode
-        });
     }
     async load(fetchedData) {
         const title = this.getAttribute('title');
@@ -55,26 +61,37 @@ class Chart extends HTMLElement {
         return dataArray;
     }
     loadBarChart(title, dataArray) {
-        var data = google.visualization.arrayToDataTable(dataArray);
-        var options = {
+        this.#chartData = google.visualization.arrayToDataTable(dataArray);
+        this.#chartOptions = {
             title: title,
             width: 'auto',
             height: 'auto',
             bar: { groupWidth: "80%" },
             legend: { position: "none" },
         };
-        var chart = new google.visualization.ColumnChart(this.shadowRoot.querySelector('#chart'));
-        chart.draw(data, options);
+        this.#chart = new google.visualization.ColumnChart(this.shadowRoot.querySelector('#chart'));
+        this.#readyToDraw = true;
+        this.drawChart();
     }
     loadPieChart(title, dataArray) {
-        var data = google.visualization.arrayToDataTable(dataArray);
-        var options = {
+        this.#chartData = google.visualization.arrayToDataTable(dataArray);
+        this.#chartOptions = {
             title: title,
             width: 'auto',
             height: 'auto'
         };
-        var chart = new google.visualization.PieChart(this.shadowRoot.querySelector('#chart'));
-        chart.draw(data, options);
+        this.#chart = new google.visualization.PieChart(this.shadowRoot.querySelector('#chart'));
+        this.#readyToDraw = true;
+        this.drawChart();
+    }
+    drawChart() {
+        this.#chart.draw(this.#chartData, this.#chartOptions);
+    }
+
+    onResize() {
+        if (this.#readyToDraw) {
+            this.drawChart();
+        }
     }
 
     connectedCallback() {
