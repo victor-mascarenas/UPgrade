@@ -1,24 +1,41 @@
+import APIData from "./APIData.js";
+
 class Chart extends HTMLElement {
+    #apiData;
+
     constructor() {
         super();
+        this.#apiData = new APIData();
         this.addShadow('open');
-        const template = document.querySelector('#user-chart-template');
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
-        this.getData();
+        this.init();
     }
 
+    async init() {
+        const templateContent = await this.getTemplate();
+        this.loadTemplate(templateContent);
+        this.shadowRoot.querySelector('#reload').addEventListener('click', this.graph.bind(this));
+        this.graph();
+    }
+    getTemplate() {
+        return fetch('userChart/template.html')
+            .then((res) => res.text())
+            .catch((error) => {
+                console.log(`Error: ${error.message}`);
+            });
+    }
+    loadTemplate(templateContent) {
+        const template = document.createElement('template');
+        template.innerHTML = templateContent;
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+    async graph() {
+        const data = await this.#apiData.getData(this.getAttribute('data-url'));
+        this.load(data);
+    }
     addShadow (mode) {
         this.attachShadow({
             mode: mode
         });
-    }
-    async getData() {
-        await fetch(this.getAttribute('data-url'))
-            .then((res) => res.json())
-            .then((data) => this.load(data))
-            .catch((error) => {
-                console.log(`Error: ${error.message}`);
-            });
     }
     async load(fetchedData) {
         const title = this.getAttribute('title');
@@ -61,9 +78,7 @@ class Chart extends HTMLElement {
     }
 
     connectedCallback() {
-        this.shadowRoot.querySelector('#reload').addEventListener('click', () => {
-            this.getData();
-        });
+        
     }
     disconnectedCallback() {
         this.shadowRoot.querySelector('#reload').removeEventListener();

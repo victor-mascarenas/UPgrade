@@ -27,12 +27,6 @@
         <user-chart type="pie" title='Country world population' data-url="https://fakerapi.it/api/v1/custom?_quantity=193&id=number&name=country&code=countryCode&population=number&lat=latitude&lng=longitude" fields="name,population"></user-chart>
     </section>
 
-    <template id="user-chart-template">
-        <link rel="stylesheet" href="css/user-chart.css">
-        <button id="reload" class="button">Reload chart</button>
-        <div id="chart" class="chart"></div>
-    </template>
-
-    <script src="js/charts.js"></script>
+    <script type="module" src="userChart/js/user-chart.js"></script>
 </body>
 </html>
