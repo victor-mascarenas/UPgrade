@@ -12,6 +12,7 @@ class Chart extends HTMLElement {
         this.#readyToDraw = false;
         this.#apiData = new APIData();
         this.addShadow('open');
+        this.verifyScript();
         this.init();
     }
 
@@ -26,6 +27,15 @@ class Chart extends HTMLElement {
         this.shadowRoot.querySelector('#reload').addEventListener('click', this.graph.bind(this));
         window.addEventListener('resize', this.onResize.bind(this));
         this.graph();
+    }
+    verifyScript() {
+        if (!document.querySelector('#gcs')) {
+            const gcs = document.createElement('script');
+            gcs.setAttribute('id', 'gcs');
+            gcs.setAttribute('type', 'text/javascript');
+            gcs.setAttribute('src', 'https://www.gstatic.com/charts/loader.js');
+            document.head.appendChild(gcs);
+        }
     }
     getTemplate() {
         return fetch('userChart/template.html')

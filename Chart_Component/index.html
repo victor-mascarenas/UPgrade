@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module" src="userChart/js/user-chart.js"></script>
     <title>Chart Component</title>
 </head>
 <body>
@@ -26,7 +26,5 @@
         </h3>
         <user-chart type="pie" title='Country world population' data-url="https://fakerapi.it/api/v1/custom?_quantity=193&id=number&name=country&code=countryCode&population=number&lat=latitude&lng=longitude" fields="name,population"></user-chart>
     </section>
-
-    <script type="module" src="userChart/js/user-chart.js"></script>
 </body>
 </html>
