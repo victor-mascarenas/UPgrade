@@ -1,24 +1,31 @@
 .button {
-    margin: 10px 0px;
-    font-size: 1em;
-    width: auto;
-    height: 30px;
-    padding: 5px;
-    background: #3075ff;
-    color: #fff;
-    outline: none;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    transition: 0.5s;
+  margin: 10px 0px;
+  font-size: 1em;
+  width: auto;
+  height: 30px;
+  padding: 5px;
+  background: #3075ff;
+  color: #fff;
+  outline: none;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
-.button:hover {
-    background: #0055dd;
-    color: #fff;
-    transition: 0.5s;
-}
+
 .button:focus {
-    box-shadow: 0 0 0 2px rgba(0, 85, 255, 0.5)
+  -webkit-box-shadow: 0 0 0 2px rgba(0, 85, 255, 0.5);
+          box-shadow: 0 0 0 2px rgba(0, 85, 255, 0.5);
 }
+
+.button:hover {
+  background: #0055dd;
+  color: #fff;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
 .chart {
-    height: 32em;
+  height: 32em;
 }
+/*# sourceMappingURL=user-chart.css.map */
