@@ -25,16 +25,11 @@
   transition: 0.5s;
 }
 
-#chart-wrap {
+.chart-empty {
   height: 0px;
-  position: relative;
 }
 
-#chart-wrap .chart {
+.chart-full {
   height: 32em;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
 }
 /*# sourceMappingURL=user-chart.css.map */

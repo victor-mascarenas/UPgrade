@@ -42,8 +42,10 @@ class Chart extends HTMLElement {
     async graph() {
         try {
             const data = await this.#apiData.getData(this.getAttribute('data-url'));
+            this.shadowRoot.querySelector('#chart').classList = 'chart-full';
             this.load(data);
         } catch (error) {
+            this.shadowRoot.querySelector('#chart').classList = 'chart-empty';
             console.log(error);
         }
     }
