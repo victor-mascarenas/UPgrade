@@ -3,7 +3,7 @@ export default class APIData {
         return fetch(url)
             .then((res) => res.json())
             .catch((error) => {
-                console.log(`Error: ${error.message}`);
+                throw `An error ocurred while fetching data from ${url}: ${error.message}`;
             });
     }
 }

@@ -19,6 +19,14 @@
         transition: 0.5s;
     }
 }
-.chart {
-    height: 32em;
+#chart-wrap {
+    height: 0px;
+    position: relative;
+    .chart {
+        height: 32em;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+    }
 }

@@ -40,8 +40,12 @@ class Chart extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
     async graph() {
-        const data = await this.#apiData.getData(this.getAttribute('data-url'));
-        this.load(data);
+        try {
+            const data = await this.#apiData.getData(this.getAttribute('data-url'));
+            this.load(data);
+        } catch (error) {
+            console.log(error);
+        }
     }
     async load(fetchedData) {
         const title = this.getAttribute('title');
@@ -99,6 +103,7 @@ class Chart extends HTMLElement {
     }
     disconnectedCallback() {
         this.shadowRoot.querySelector('#reload').removeEventListener();
+        window.removeEventListener();
     }
 }
 
