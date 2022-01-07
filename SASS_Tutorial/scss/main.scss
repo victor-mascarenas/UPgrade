@@ -31,10 +31,16 @@ body {
     @include flexCenter(row);
     width: 80%;
     margin: 0 auto;
-    #{&}-paragraph {
+    #{&}-paragraph1 {
         font-weight: get-weight(bold);
         &:hover {
             color: pink;
+        }
+    }
+    #{&}-paragraph2 {
+        @extend .main-paragraph1;
+        &:hover {
+            color: $accent-color;
         }
     }
     @include mobile {
