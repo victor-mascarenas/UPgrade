@@ -11,17 +11,20 @@
             align-self: flex-end;
             flex-shrink: 0;//Will not shrink
             min-height: 100px;
+            order: 3;
         }
         &2 {
             align-self: center;//Overrides Y axis (container's aign-items property)
             flex-basis: 0;//Desde donde empieza a crecer (ignora la propiedad width establecida)
             flex-grow: 2;
             min-height: 200px;
+            order: 1;
         }
         &3 {
             flex-basis: 0;
             flex-grow: 1;//Toma el espacio extra (crece)
             min-height: 500px;
+            order: 2;
         }
     }
 }
