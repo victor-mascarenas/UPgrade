@@ -1,0 +1,19 @@
+.flexbox-container .flexbox-item {
+  background-color: #dfdfdf;
+  border: 3px solid #333;
+  margin: 10px;
+  width: 200px;
+}
+
+.flexbox-container .flexbox-item1 {
+  min-height: 100px;
+}
+
+.flexbox-container .flexbox-item2 {
+  min-height: 200px;
+}
+
+.flexbox-container .flexbox-item3 {
+  min-height: 500px;
+}
+/*# sourceMappingURL=styles.css.map */

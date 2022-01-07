@@ -1,0 +1,17 @@
+.flexbox-container {
+    .flexbox-item {
+        background-color: #dfdfdf;
+        border: 3px solid #333;
+        margin: 10px;
+        width: 200px;
+        &1 {
+            min-height: 100px;
+        }
+        &2 {
+            min-height: 200px;
+        }
+        &3 {
+            min-height: 500px;
+        }
+    }
+}
