@@ -1,0 +1,19 @@
+body {
+    margin: 0px;
+}
+.chart-h {
+    color: rgb(71, 71, 71);
+    font-size: 1.5em;
+    margin-bottom: 0em;
+}
+h1 {
+    color: whitesmoke;
+}
+.navbar {
+    background: #2FB2FF;
+    padding: 1em;
+}
+section {
+    padding-right: 1em;
+    padding-left: 1em;
+}

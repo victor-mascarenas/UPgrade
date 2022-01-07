@@ -1,4 +1,5 @@
-import APIData from "./APIData.js";
+import APIData from "./userChart/js/APIData.js";
+import style from './userChart/css/user-chart.scss';
 
 class Chart extends HTMLElement {
     #apiData;
@@ -38,7 +39,7 @@ class Chart extends HTMLElement {
         }
     }
     getTemplate() {
-        return fetch('userChart/template.html')
+        return fetch('./userChart/template.html')
             .then((res) => res.text())
             .catch((error) => {
                 console.log(`Error: ${error.message}`);
@@ -47,6 +48,11 @@ class Chart extends HTMLElement {
     loadTemplate(templateContent) {
         const template = document.createElement('template');
         template.innerHTML = templateContent;
+
+        const styleTag = document.createElement('style');
+        styleTag.innerHTML = style;
+        this.shadowRoot.appendChild(styleTag);
+
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
     async graph() {
