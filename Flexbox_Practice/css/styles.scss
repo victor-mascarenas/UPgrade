@@ -1,7 +1,26 @@
 .flexbox-container {
+    display: flex;
+    height: 90vh;
+    //Eje X
+    //justify-content: flex-start;//on start (top)
+    //justify-content: center;//on center
+    //justify-content: space-between;//all space occupied with space between items
+    justify-content: space-around;//even space around each item
+    //Eje Y
+    //align-items: stretch;//Buscaran llenar todo el espacio
+    //align-items: flex-start;//on start (top)
+    align-items: center;//Alineados verticalmente
+    //align-content: center;//Only for multiline, da el espacio entre lineas
+    //align-content: flex-end;
+    //align-content: flex-start;
+    //align-content: space-between;
+    //align-content: space-around;
+    //
+    flex-wrap: wrap;//Se mueven a distintas 'filas' en vez de achicarse
     .flexbox-item {
         background-color: #dfdfdf;
         border: 3px solid #333;
+        border-radius: 1em;
         margin: 10px;
         width: 200px;
         &1 {
