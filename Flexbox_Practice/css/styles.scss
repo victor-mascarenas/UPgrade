@@ -1,9 +1,5 @@
 .flexbox-container {
-    align-items: center;//Centered horizontally
     display: flex;
-    height: 150vh;
-    flex-direction: column;//Columns insead of rows
-    justify-content: center;//Columns are centered vertically
     .flexbox-item {
         background-color: #dfdfdf;
         border: 3px solid #333;
@@ -11,12 +7,17 @@
         margin: 10px;
         width: 200px;
         &1 {
+            flex-shrink: 0;//Will not shrink
             min-height: 100px;
         }
         &2 {
+            flex-basis: 0;//Desde donde empieza a crecer (ignora la propiedad width establecida)
+            flex-grow: 2;
             min-height: 200px;
         }
         &3 {
+            flex-basis: 0;
+            flex-grow: 1;//Toma el espacio extra (crece)
             min-height: 500px;
         }
     }

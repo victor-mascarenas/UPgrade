@@ -1,18 +1,7 @@
 .flexbox-container {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 150vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 .flexbox-container .flexbox-item {
@@ -24,14 +13,26 @@
 }
 
 .flexbox-container .flexbox-item1 {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   min-height: 100px;
 }
 
 .flexbox-container .flexbox-item2 {
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
   min-height: 200px;
 }
 
 .flexbox-container .flexbox-item3 {
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   min-height: 500px;
 }
 /*# sourceMappingURL=styles.css.map */
