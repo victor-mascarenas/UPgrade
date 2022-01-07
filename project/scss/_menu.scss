@@ -1,0 +1,102 @@
+.menu-btn {
+    cursor: pointer;
+    height: 20ps;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 28px;
+    z-index: 1;
+    @include transition-aease;
+    &-burger {
+        background: set-text-color($primary-color);
+        height: 3px;
+        position: absolute;
+        right: 0;
+        top: 0.5rem;
+        width: 28px;
+        @include transition-aease;
+        &::before {
+            background: set-text-color($primary-color);
+            content: '';
+            height: 3px;
+            position: absolute;
+            top: -8px;
+            width: 28px;
+            @include transition-aease;
+        }
+        &::after {
+            background: set-text-color($primary-color);
+            content: '';
+            height: 3px;
+            position: absolute;
+            top: 8px;
+            width: 20px;
+            @include transition-aease;
+        }
+        &.open {
+            background: transparent;
+            transform: rotate(720deg);
+            &::before {
+                transform: rotate(45deg) translate(5px, 8px);
+            }
+            &::after {
+                width: 28px;
+                transform: rotate(-45deg) translate(3px, -7px);
+            }
+        }
+    }
+}
+
+.nav {
+    left: 0;
+    opacity: 0.98;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100vw;
+    &.open {
+        visibility: visible;
+    }
+    .menu-nav {
+        align-items: center;
+        background: $primary-color;
+        display: flex;
+        flex-flow: column wrap;
+        height: 100vh;
+        justify-content: center;
+        list-style-type: none;
+        overflow: hidden;
+        padding-right: 1rem;
+        transform: translateY(-100%);
+        @include transition-aease;
+        &.open {
+            transform: translateY(0);
+        }
+        &-item {
+            transform: translateX(100vw);
+            @include transition-aease;
+            &.open {
+                transform: translateX(0);
+            }
+            &.active > a {
+                color: $secondary-color;
+            }
+        }
+        &-link {
+            display: inline-block;
+            font-size: 2rem;
+            text-transform: uppercase;
+            padding: 2rem 0;
+            @include transition-aease;
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+    }
+}
+
+@for $i from 1 through 4 {
+    .menu-nav-item:nth-child(#{$i}) {
+        transition-delay: ($i * 0.1s) + 0.15s;
+    }
+}
