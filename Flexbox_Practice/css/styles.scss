@@ -1,4 +1,5 @@
 .flexbox-container {
+    align-items: stretch;
     display: flex;
     .flexbox-item {
         background-color: #dfdfdf;
@@ -7,10 +8,12 @@
         margin: 10px;
         width: 200px;
         &1 {
+            align-self: flex-end;
             flex-shrink: 0;//Will not shrink
             min-height: 100px;
         }
         &2 {
+            align-self: center;//Overrides Y axis (container's aign-items property)
             flex-basis: 0;//Desde donde empieza a crecer (ignora la propiedad width establecida)
             flex-grow: 2;
             min-height: 200px;

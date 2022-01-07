@@ -1,4 +1,7 @@
 .flexbox-container {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -13,12 +16,17 @@
 }
 
 .flexbox-container .flexbox-item1 {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   min-height: 100px;
 }
 
 .flexbox-container .flexbox-item2 {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   -ms-flex-preferred-size: 0;
       flex-basis: 0;
   -webkit-box-flex: 2;
