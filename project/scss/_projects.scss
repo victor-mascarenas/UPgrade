@@ -1,0 +1,92 @@
+.projects {
+    padding-bottom: 2rem;
+    &-bio-img {
+        align-items: center;
+        background: linear-gradient(
+            to right, 
+            rgba($primary-color, 0.9), 
+            rgba($primary-color, 0.3)
+        ), 
+        url('../img/model-1.jpg') center top;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        height: 30vh;
+        justify-content: flex-end;
+        width: 100%;
+        .text-secondary {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+    }
+    &-items {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 2rem;
+        margin: 2rem auto 0 auto;
+        width: 60vw;
+        
+    }
+    &-item {
+        border-bottom: 5px solid $secondary-color;
+        border-radius: 0.5em;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+        &::after {
+            background: $secondary-color;
+            content: '';
+            height: 100%;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            @include transition-aease;
+        }
+        &:hover {
+            &::after {
+                opacity: 0.9;
+                top: 0;
+            }
+            .projects-btn {
+                opacity: 1;
+            }
+        }
+    }
+
+    &-btns {
+        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        height: 100%;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+    }
+
+    &-btn {
+        color: $primary-color;
+        opacity: 0;
+        @include transition-aease;
+        &:hover {
+            color: set-text-color($primary-color);
+        }
+    }
+
+    .social-icons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer {
+        transform: 
+            rotate(90deg)
+            translate(-3rem, -5rem);
+    }
+}
