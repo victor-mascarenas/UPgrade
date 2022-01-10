@@ -1,0 +1,9 @@
+body {
+  background: #475cd1;
+  color: #f00;
+  border: solid 1px #f00;
+}
+body main {
+  color: #00f;
+  border: solid 1px #00f;
+}
