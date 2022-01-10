@@ -1,8 +1,49 @@
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+article,
+details,
+section,
+summary,
+aside,
+main,
+menu,
+nav,
+figcaption,
+figure,
+footer,
+header,
+hgroup {
+  display: block;
+}
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  display: none;
+}
 body {
   background: linear-gradient(top, #fff, #000);
   -webkit-background: linear-gradient(top, #fff, #000);
   -moz-background: linear-gradient(top, #fff, #000);
   color: #f00;
+  position: fixed;
+  top: 20px;
+  left: 20px;
   border: solid 1px #f00;
   margin-left: 4px;
 }
@@ -12,7 +53,7 @@ body main {
   transition: all 0.2s ease;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
-  border: solid 1px #00f;
+  border: 1px solid #00f;
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -21,11 +62,19 @@ body main {
   margin-bottom: 11px;
   zoom: 1;
 }
-body main:after,
-body main:before {
-  content: '';
+body main:before,
+body main:after {
+  content: "";
   display: table;
 }
 body main:after {
   clear: both;
+}
+body main a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  -moz-text-overflow: ellipsis;
+  text-shadow: -1px -1px 0 #00f, 1px -1px 0 #00f, -1px 1px 0 #00f, 1px 1px 0 #00f;
 }

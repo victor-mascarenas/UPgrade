@@ -1,6 +1,9 @@
 @import 'nib'
 @import 'styl/*'
 
+normalize-base()
+normalize-html5()
+
 add(n1 = 0, n2 = 0, n3 = n1)
     n1 + n2 + n3
 
@@ -8,17 +11,21 @@ marg(a, b)
     return a a*10 a*b
 
 body
-    //background primary
     background linear-gradient(top, white, black)
     color red
+    fixed top 20px left 20px
     border solid 1px @color
     margin-left add(1px, 2)
     main
         margin marg(10px, 20)
         color blue
         transition(all 0.2s ease)
-        border solid 1px @color
+        //border solid 1px @color
+        border @color
         border-radius 20px
         margin-left @margin-left
         test(11)
-        cf()
+        clearfix()
+        a
+            overflow ellipsis
+            shadow-stroke(blue)
