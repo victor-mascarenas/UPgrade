@@ -6,9 +6,27 @@ body
     background primary
     color red
     border solid 1px @color
+    margin-left -10px
     main
+        //Colors
+        //background white
+        //background rgba(white, 0.9)
+        //background grayscale(primary)
+        //background tint(primary, 50%)
+        //background shade(primary, 50%)
+        //background invert(primary)
+        //background complement(primary)
+        //background desaturate(primary, 50%)
+        //Numbers
+        //margin-top abs(-10px)
+        //margin-top ceil(4.3%)
+        //margin-top floor(4.3%)
+        //margin-top round(4.3%)
+        //margin-top unit(4.3%, 'px')
+        margin-left abs(@margin-left)
         color blue
         border solid 1px @color
         //border-radius()
         border-radius 20px
+        margin-left @margin-left
         cf()
