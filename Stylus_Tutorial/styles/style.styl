@@ -1,3 +1,4 @@
+@import 'nib'
 @import 'styl/*'
 
 add(n1 = 0, n2 = 0, n3 = n1)
@@ -7,7 +8,8 @@ marg(a, b)
     return a a*10 a*b
 
 body
-    background primary
+    //background primary
+    background linear-gradient(top, white, black)
     color red
     border solid 1px @color
     margin-left add(1px, 2)
