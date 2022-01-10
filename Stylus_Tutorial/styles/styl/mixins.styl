@@ -6,6 +6,13 @@ border-radius(radius = 5px)
     vendor('border-radius', radius)
 transition(args)
     vendor('transition', args)
+test(var)
+    margin-top unit(var, 'px')
+    if var > 10
+        //background red
+        margin-bottom unit(var, 'px')
+    /* else
+        background blue */
 cf()
     zoom 1
     &:after
