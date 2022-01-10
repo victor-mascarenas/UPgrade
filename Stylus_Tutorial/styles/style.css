@@ -47,6 +47,29 @@ body {
   border: solid 1px #f00;
   margin-left: 4px;
 }
+@media only screen and (min-width: 600px) {
+  body {
+    color: #f00;
+  }
+}
+@media only screen and (min-width: 1050px) {
+  body {
+    color: #ff0;
+  }
+}
+@media only screen and (max-width: 700px) {
+  body {
+    color: #00f;
+  }
+  body main {
+    color: #00f;
+  }
+}
+@media only screen and (max-width: 400px) {
+  body {
+    color: #800080;
+  }
+}
 body main {
   margin: 10px 100px 200px;
   color: #00f;

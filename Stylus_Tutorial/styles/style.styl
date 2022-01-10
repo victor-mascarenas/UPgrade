@@ -10,12 +10,25 @@ add(n1 = 0, n2 = 0, n3 = n1)
 marg(a, b)
     return a a*10 a*b
 
+rupture.scale = 0 400px 600px 800px 1050px 1800px
+rupture.scale-names = 'xs' 's' 'm' 'l' 'xl' 'hd'
+
 body
     background linear-gradient(top, white, black)
     color red
     fixed top 20px left 20px
     border solid 1px @color
     margin-left add(1px, 2)
+    +above('m')
+        color red
+    +above('xl')
+        color yellow
+    +below(700px)
+        color blue
+        main
+            color blue
+    +mobile()
+        color purple
     main
         margin marg(10px, 20)
         color blue
