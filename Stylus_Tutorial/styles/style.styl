@@ -1,8 +1,11 @@
+@import 'typographic'
 @import 'nib'
 @import 'styl/*'
 
 normalize-base()
 normalize-html5()
+
+t-presets(2)
 
 add(n1 = 0, n2 = 0, n3 = n1)
     n1 + n2 + n3
@@ -13,12 +16,15 @@ marg(a, b)
 rupture.scale = 0 400px 600px 800px 1050px 1800px
 rupture.scale-names = 'xs' 's' 'm' 'l' 'xl' 'hd'
 
+t-headers($helvetica)
+
 body
     background linear-gradient(top, white, black)
     color red
     fixed top 20px left 20px
     border solid 1px @color
     margin-left add(1px, 2)
+    font-family $futura
     +above('m')
         color red
     +above('xl')
