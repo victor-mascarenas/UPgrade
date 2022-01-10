@@ -1,6 +1,18 @@
 primary = #475CD1
 red = red
 
+border-radius(radius = 5px)
+    -webkit-border-radius radius
+    border-radius radius
+cf()
+    zoom 1
+    &:after
+    &:before
+        content ''
+        display table
+    &:after
+        clear both
+
 body
     background primary
     color red
@@ -8,3 +20,6 @@ body
     main
         color blue
         border solid 1px @color
+        //border-radius()
+        border-radius 20px
+        cf()

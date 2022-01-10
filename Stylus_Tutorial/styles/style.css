@@ -6,4 +6,15 @@ body {
 body main {
   color: #00f;
   border: solid 1px #00f;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  zoom: 1;
+}
+body main:after,
+body main:before {
+  content: '';
+  display: table;
+}
+body main:after {
+  clear: both;
 }
