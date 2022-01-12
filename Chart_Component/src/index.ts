@@ -1,12 +1,13 @@
-import APIData from "./userChart/js/APIData.js";
+import APIData from "./userChart/js/APIData";
+import './css/main.scss';
 import style from './userChart/css/user-chart.scss';
 
 class Chart extends HTMLElement {
-    #apiData;
-    #chartOptions;
-    #chartData;
-    #chart;
-    #readyToDraw;
+    #apiData: APIData;
+    #chartOptions: {};
+    #chartData: google.visualization.DataTable;
+    #chart: google.visualization.ColumnChart | google.visualization.PieChart;
+    #readyToDraw: boolean;
 
     constructor() {
         super();
@@ -17,7 +18,7 @@ class Chart extends HTMLElement {
         this.init();
     }
 
-    addShadow (mode) {
+    addShadow (mode: ShadowRootMode) {
         this.attachShadow({
             mode: mode
         });
@@ -38,14 +39,17 @@ class Chart extends HTMLElement {
             document.head.appendChild(gcs);
         }
     }
-    getTemplate() {
-        return fetch('./userChart/template.html')
+    async getTemplate(): Promise<string> {
+        let content: string;
+        await fetch('./userChart/template.html')
             .then((res) => res.text())
+            .then((text) => content = text)
             .catch((error) => {
                 console.log(`Error: ${error.message}`);
             });
+        return content;
     }
-    loadTemplate(templateContent) {
+    loadTemplate(templateContent: string) {
         const template = document.createElement('template');
         template.innerHTML = templateContent;
 
@@ -53,36 +57,37 @@ class Chart extends HTMLElement {
         styleTag.innerHTML = style;
         this.shadowRoot.appendChild(styleTag);
 
+
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
     async graph() {
         try {
             const data = await this.#apiData.getData(this.getAttribute('data-url'));
-            this.shadowRoot.querySelector('#chart').classList = 'chart-full';
+            this.shadowRoot.querySelector('#chart').classList.add('chart-full');
             this.load(data);
         } catch (error) {
-            this.shadowRoot.querySelector('#chart').classList = 'chart-empty';
+            this.shadowRoot.querySelector('#chart').classList.add('chart-empty');
             console.log(error);
         }
     }
-    async load(fetchedData) {
+    async load(fetchedData: Object) {
         const title = this.getAttribute('title');
         const dataArray = await this.prepareData(fetchedData);
         const onLoadCallback = this.getAttribute('type') === 'bar' ? this.loadBarChart : this.loadPieChart;
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(onLoadCallback.bind(this, title, dataArray));
     }
-    async prepareData(fetchedData) {
+    async prepareData(fetchedData: any) {
         const fields = this.getAttribute('fields').split(',');
         const dataArray = [fields];
-        await fetchedData.data.forEach(element => {
-            let dataFieldArray = [];
+        await fetchedData.data.forEach((element: any) => {
+            let dataFieldArray: string[] = [];
             fields.forEach((field) => dataFieldArray.push(element[field]));
             dataArray.push(dataFieldArray);
         });
         return dataArray;
     }
-    loadBarChart(title, dataArray) {
+    loadBarChart(title: string, dataArray: string[]) {
         this.#chartData = google.visualization.arrayToDataTable(dataArray);
         this.#chartOptions = {
             title: title,
@@ -95,7 +100,7 @@ class Chart extends HTMLElement {
         this.#readyToDraw = true;
         this.drawChart();
     }
-    loadPieChart(title, dataArray) {
+    loadPieChart(title: string, dataArray: string[]) {
         this.#chartData = google.visualization.arrayToDataTable(dataArray);
         this.#chartOptions = {
             title: title,
@@ -120,8 +125,8 @@ class Chart extends HTMLElement {
         
     }
     disconnectedCallback() {
-        this.shadowRoot.querySelector('#reload').removeEventListener();
-        window.removeEventListener();
+        this.shadowRoot.querySelector('#reload').removeEventListener('click', this.graph);
+        window.removeEventListener('resize', this.onResize);
     }
 }
 

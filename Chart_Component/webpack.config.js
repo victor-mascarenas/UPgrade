@@ -3,15 +3,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'development',
+    resolve: {
+        extensions: [".ts", ".tsx", ".js", ".css", ".scss"]
+    },
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            },
             {
                 test: /\.html$/,
                 use: [
@@ -30,6 +26,11 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
             }
         ]
     },
@@ -43,7 +44,7 @@ module.exports = {
             filename: './userChart/template.html'
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].css',
+            filename: '[name].scss',
             chunkFilename: '[id].css'
         })
     ]
