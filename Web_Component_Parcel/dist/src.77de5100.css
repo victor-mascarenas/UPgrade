@@ -1,0 +1,23 @@
+body {
+  margin: 0px;
+}
+
+.navbar {
+  background: #2FB2FF;
+  padding: 1em;
+}
+.navbar h1 {
+  color: whitesmoke;
+}
+
+section {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+section .chart-h {
+  color: #474747;
+  font-size: 1.5em;
+  margin-bottom: 0em;
+}
+
+/*# sourceMappingURL=/src.77de5100.css.map */

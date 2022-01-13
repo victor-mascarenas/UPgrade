@@ -1,8 +1,8 @@
 import APIData from "./userChart/js/APIData";
 import './css/main.scss';
-import style from './userChart/css/user-chart.scss';
+//import style from './userChart/css/user-chart.scss';
 
-class Chart extends HTMLElement {
+export default class Chart extends HTMLElement {
     #apiData: APIData;
     #chartOptions: {};
     #chartData: google.visualization.DataTable;
@@ -53,9 +53,9 @@ class Chart extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = templateContent;
 
-        const styleTag = document.createElement('style');
+        /* const styleTag = document.createElement('style');
         styleTag.innerHTML = style;
-        this.shadowRoot.appendChild(styleTag);
+        this.shadowRoot.appendChild(styleTag); */
 
 
         this.shadowRoot.appendChild(template.content.cloneNode(true));
