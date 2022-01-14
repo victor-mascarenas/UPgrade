@@ -8,6 +8,6 @@ import com.victormas.practice.models.UserModel;
 
 @Repository
 public interface UsersRepository extends JpaRepository<UserModel, Integer> {
-	@Query(value = "select * from users where name = ?1 and password = ?2", nativeQuery = true)
+	@Query("select u from UserModel u where u.name = ?1 and u.password = ?2")
 	public UserModel findByCredentials(String name, String password);
 }
