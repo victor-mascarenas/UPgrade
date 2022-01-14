@@ -25,9 +25,9 @@ public class PostsController {
 		List<PostModel> posts = this.postsService.retrieveAll(userId);
 		return posts;
 	}
-	@PostMapping("/user/{userId}/post")
-	public PostModel post(@PathVariable int userId, @RequestBody PostModel post) {
-		PostModel newPost = this.postsService.store(userId, post);
+	@PostMapping("/user/post")
+	public PostModel post(@RequestBody PostModel post) {
+		PostModel newPost = this.postsService.store(post);
 		return newPost;
 	}
 	@DeleteMapping("/post/{postId}")

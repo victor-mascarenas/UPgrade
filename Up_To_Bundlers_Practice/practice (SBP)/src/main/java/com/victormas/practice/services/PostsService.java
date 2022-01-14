@@ -17,7 +17,7 @@ public class PostsService {
 		List<PostModel> posts = this.postsRepository.findAllByUserId(userId);
 		return posts;
 	}
-	public PostModel store (int userId, PostModel post) {
+	public PostModel store (PostModel post) {
 		PostModel newPost = this.postsRepository.save(post);
 		return newPost;
 	}
