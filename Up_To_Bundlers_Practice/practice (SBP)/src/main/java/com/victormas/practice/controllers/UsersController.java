@@ -27,6 +27,7 @@ public class UsersController {
 	@CrossOrigin(origins = "http://localhost:8081")
 	@PostMapping("/user")
 	public UserModel post(@RequestBody UserModel user) {
-		return null;
+		UserModel newUser = this.usersService.save(user);
+		return newUser;
 	}
 }

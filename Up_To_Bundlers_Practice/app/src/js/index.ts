@@ -1,12 +1,12 @@
-import UserLogin from './UserLogin';
+import UserService from './UserService';
 import '../css/main.scss';
 
 class Login {
     #form: HTMLElement;
-    #userLogin: UserLogin;
+    #userService: UserService;
 
-    constructor(userlogin: UserLogin) {
-        this.#userLogin = userlogin;
+    constructor(userService: UserService) {
+        this.#userService = userService;
         this.init();
     }
 
@@ -16,15 +16,16 @@ class Login {
     }
 
     async formSubmit(e: Event): Promise<boolean> {
+        e.preventDefault();
         const nameField = this.#form.querySelector('#name') as HTMLInputElement;
         const name = nameField.value;
         const passwordField = this.#form.querySelector('#password') as HTMLInputElement;
         const password = passwordField.value;
-        const user = await this.#userLogin.attemptLogin(name, password);
+        const user = await this.#userService.attemptLogin(name, password);
         if (user.Id !== 0) {
             return true;
         }
     }
 }
 
-new Login(new UserLogin());
+new Login(new UserService());
