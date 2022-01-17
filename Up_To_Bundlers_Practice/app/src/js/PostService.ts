@@ -23,4 +23,19 @@ export default class PostService {
             .catch((error) => console.log(`Error: ${error.message}`));
         return posts;
     }
+    async post(post: Post, userId: number): Promise<boolean> {
+        let done = false;
+        const date: string = post.PostDate.toISOString().slice(0, 10);
+        await fetch('http://localhost:8082/posts/user/post', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({id: 0, title: post.Title, content: post.Content, postDate: date, userId: userId})
+        })
+            .then(() => done = true)
+            .catch((error) => console.log(`Error: ${error.message}`));
+        return done;
+    }
 }

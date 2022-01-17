@@ -17,18 +17,21 @@
     <section>
         <form action="">
             <input type="text" class="input" placeholder="Que tal tu dia?" id="content" name="content">
-            <input type="submit" value="Post" class="btn">
+            <input type="button" value="Post" class="btn" id="postBtn">
         </form>
         <div class="postsContainer"></div>
     </section>
-    <div class="modal">
-        <form action="">
-            <input type="text" class="input" placeholder="Titulo" id="titulo block" name="titulo">
-            <textarea name="content" id="content" cols="30" rows="10" class="input multiline block" placeholder="Escribe aqui"></textarea>
-            <input type="submit" value="Post" class="btn">
-            <input type="button" value="Cancel" class="btn-r">
-        </form>
-        
+    <div class="overlay down">
+        <div class="modal" id="modal">
+            <form action="">
+                <input type="text" class="input" placeholder="Titulo" id="titulo" name="titulo">
+                <textarea name="content" id="contentModal" cols="30" rows="10" class="input multiline" placeholder="Escribe aqui"></textarea>
+                <div>
+                    <input type="button" value="Post" class="btn" id="modalPostBtn">
+                    <input type="button" value="Cancel" class="btn-r" id="modalCancelBtn">
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
