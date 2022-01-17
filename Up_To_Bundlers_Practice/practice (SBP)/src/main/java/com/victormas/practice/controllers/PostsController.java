@@ -3,6 +3,7 @@ package com.victormas.practice.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,16 +21,19 @@ public class PostsController {
 	@Autowired
 	private PostsService postsService;
 	
+	@CrossOrigin(origins = "http://localhost:8081")
 	@GetMapping("/user/{userId}")
 	public List<PostModel> get(@PathVariable int userId) {
 		List<PostModel> posts = this.postsService.retrieveAll(userId);
 		return posts;
 	}
+	@CrossOrigin(origins = "http://localhost:8081")
 	@PostMapping("/user/post")
 	public PostModel post(@RequestBody PostModel post) {
 		PostModel newPost = this.postsService.store(post);
 		return newPost;
 	}
+	@CrossOrigin(origins = "http://localhost:8081")
 	@DeleteMapping("/post/{postId}")
 	public void delete(@PathVariable int postId) {
 		this.postsService.delete(postId);

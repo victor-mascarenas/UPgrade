@@ -1,5 +1,5 @@
-import UserLogin from './js/UserLogin';
-import './css/main.scss';
+import UserLogin from './UserLogin';
+import '../css/main.scss';
 
 class Login {
     #form: HTMLElement;

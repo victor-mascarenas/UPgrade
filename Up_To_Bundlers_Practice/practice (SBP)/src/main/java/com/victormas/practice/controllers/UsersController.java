@@ -24,6 +24,7 @@ public class UsersController {
 		UserModel user = this.usersService.retrieve(name, password);
 		return user;
 	}
+	@CrossOrigin(origins = "http://localhost:8081")
 	@PostMapping("/user")
 	public UserModel post(@RequestBody UserModel user) {
 		return null;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuiter</title>
+    <title>Tuiter - new user</title>
 </head>
 <body>
     <header>
@@ -16,19 +16,20 @@
         <div class="form-container">
             <div class="form-header">
                 <h1>
-                    Welcome!
+                    Sign Up!
                 </h1>
-                <a href="new_user.html">
-                    <button id="newButton" class="btn-g">New user</button>
-                </a>
             </div>
             <form action="user_posts.html">
                 <div class="form-inputs">
                     <input type="text" placeholder="Your name" id="name" name="name" required class="input">
+                    <input type="email" placeholder="Your email" id="email" name="email" required class="input">
                     <input type="password" name="password" id="password" placeholder="Your password" class="input">
                 </div>
                 <div class="btn-box">
-                    <input type="submit" value="Login" class="btn">
+                    <input type="submit" value="Sign me up" class="btn">
+                    <a href="index.html">
+                        <button id="cancelButton" class="btn-r">Cancel</button>
+                    </a>
                 </div>
             </form>
         </div>

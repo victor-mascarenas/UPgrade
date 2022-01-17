@@ -1,3 +1,5 @@
+@import 'buttons';
+
 body {
     background: url('../img/wall.png') center center;
     margin: 0px;
@@ -18,27 +20,34 @@ header {
 .form-container {
     align-self: center;
     background: #555555;
-    box-shadow: 0 0 5px 5px rgba(#1CE597, .5);
+    box-shadow: 0 0 5px 5px rgba(#303030, .5);
     border-radius: 2em;
     height: auto;
     justify-self: center;
     padding: 1em;
     width: 30em;
-    h1 {
-        color: white;
-        font-size: 2em;
-        margin-top: 0px;
+    .form-header {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 2em;
+        h1 {
+            color: white;
+            font-size: 2em;
+            margin: 0px;
+        }
     }
     form {
-        div {
-            display: flex;
-            flex-direction: column;
+        .form-inputs {
+            display: grid;
+            grid-template-rows: repeat(3, auto);
+            row-gap: .5em;
             .input {
                 border: 1px solid transparent;
                 border-radius: .5em;
                 font-size: 1em;
                 height: 2em;
-                margin-bottom: 1em;
                 outline: none;
                 padding: 0px 10px;
                 transition: 0.5s;
@@ -47,23 +56,9 @@ header {
                 }
             }
         }
-        .btn {
-            background: #1DA5FF;
-            border: none;
-            border-radius: .5em;
+        .btn-box {
             float: right;
-            font-size: 1em;
-            height: 2em;
             margin-top: 1em;
-            transition: 0.5s;
-            width: 10em;
-            &:focus {
-                box-shadow: 0 0 0 5px rgba(0, 85, 255, 0.5);
-            }
-            &:hover {
-                background: #0055dd;
-                color: #fff;
-            }
         }
     }
 }

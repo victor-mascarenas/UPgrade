@@ -1,0 +1,48 @@
+.btn {
+    background: #1DA5FF;
+    border: none;
+    border-radius: .5em;
+    font-size: 1em;
+    height: 2em;
+    margin: 0.5em;
+    transition: 0.5s;
+    &:focus {
+        box-shadow: 0 0 0 5px rgba(0, 85, 255, 0.5);
+    }
+    &:hover {
+        background: #0055dd;
+        color: #fff;
+    }
+    &-g {
+        background: #1dff30;
+        border: none;
+        border-radius: .5em;
+        font-size: 1em;
+        height: 2em;
+        margin: 0.5em;
+        transition: 0.5s;
+        &:focus {
+            box-shadow: 0 0 0 5px rgba(0, 255, 42, 0.5);
+        }
+        &:hover {
+            background: #00dd12;
+            color: #fff;
+        }
+    }
+    &-r {
+        background: #ff1d1d;
+        border: none;
+        border-radius: .5em;
+        font-size: 1em;
+        height: 2em;
+        margin: 0.5em;
+        transition: 0.5s;
+        &:focus {
+            box-shadow: 0 0 0 5px rgba(255, 0, 0, 0.5);
+        }
+        &:hover {
+            background: #dd0000;
+            color: #fff;
+        }
+    }
+}
