@@ -37,7 +37,8 @@ module.exports = {
     },
     entry: {
         index: './src/js/index.ts',
-        newUser: './src/js/new-user.ts'
+        newUser: './src/js/newUser.ts',
+        posts: './src/js/posts.ts'
     },
     output: {
         filename: "[name].js",
@@ -52,7 +53,7 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: './src/user_posts.html',
             filename: './user_posts.html',
-            chunks: []
+            chunks: ['posts']
         }),
         new HtmlWebPackPlugin({
             template: './src/new_user.html',

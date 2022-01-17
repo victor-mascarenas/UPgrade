@@ -1,0 +1,18 @@
+.block {
+    display: block;
+}
+.input {
+    border: 1px solid transparent;
+    border-radius: .5em;
+    font-size: 1em;
+    height: 2em;
+    outline: none;
+    padding: 0px 10px;
+    transition: 0.5s;
+    &:focus {
+        box-shadow: 0 0 0 5px rgba(0, 85, 255, 0.5);
+    }
+}
+.multiline {
+    height: max-content;
+}

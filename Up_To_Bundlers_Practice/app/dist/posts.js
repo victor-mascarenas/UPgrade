@@ -120,33 +120,13 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
-/***/ "./src/js/User.ts":
-/*!************************!*\
-  !*** ./src/js/User.ts ***!
-  \************************/
+/***/ "./src/js/posts.ts":
+/*!*************************!*\
+  !*** ./src/js/posts.ts ***!
+  \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ User)\n/* harmony export */ });\nvar __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {\r\n    if (kind === \"m\") throw new TypeError(\"Private method is not writable\");\r\n    if (kind === \"a\" && !f) throw new TypeError(\"Private accessor was defined without a setter\");\r\n    if (typeof state === \"function\" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError(\"Cannot write private member to an object whose class did not declare it\");\r\n    return (kind === \"a\" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;\r\n};\r\nvar __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {\r\n    if (kind === \"a\" && !f) throw new TypeError(\"Private accessor was defined without a getter\");\r\n    if (typeof state === \"function\" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError(\"Cannot read private member from an object whose class did not declare it\");\r\n    return kind === \"m\" ? f : kind === \"a\" ? f.call(receiver) : f ? f.value : state.get(receiver);\r\n};\r\nvar _User_id, _User_name, _User_email, _User_password;\r\nclass User {\r\n    constructor() {\r\n        _User_id.set(this, void 0);\r\n        _User_name.set(this, void 0);\r\n        _User_email.set(this, void 0);\r\n        _User_password.set(this, void 0);\r\n        __classPrivateFieldSet(this, _User_id, 0, \"f\");\r\n    }\r\n    init(json) {\r\n        __classPrivateFieldSet(this, _User_id, json.id, \"f\");\r\n        __classPrivateFieldSet(this, _User_name, json.name, \"f\");\r\n        __classPrivateFieldSet(this, _User_email, json.password, \"f\");\r\n    }\r\n    get Id() {\r\n        return __classPrivateFieldGet(this, _User_id, \"f\");\r\n    }\r\n    get Name() {\r\n        return __classPrivateFieldGet(this, _User_name, \"f\");\r\n    }\r\n    get Email() {\r\n        return __classPrivateFieldGet(this, _User_email, \"f\");\r\n    }\r\n    get Password() {\r\n        return __classPrivateFieldGet(this, _User_password, \"f\");\r\n    }\r\n    set Id(id) {\r\n        __classPrivateFieldSet(this, _User_id, id, \"f\");\r\n    }\r\n    set Name(name) {\r\n        __classPrivateFieldSet(this, _User_name, name, \"f\");\r\n    }\r\n    set Email(email) {\r\n        __classPrivateFieldSet(this, _User_email, email, \"f\");\r\n    }\r\n    set Password(password) {\r\n        __classPrivateFieldSet(this, _User_password, password, \"f\");\r\n    }\r\n}\r\n_User_id = new WeakMap(), _User_name = new WeakMap(), _User_email = new WeakMap(), _User_password = new WeakMap();\r\n\n\n//# sourceURL=webpack://app/./src/js/User.ts?");
-
-/***/ }),
-
-/***/ "./src/js/UserService.ts":
-/*!*******************************!*\
-  !*** ./src/js/UserService.ts ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ UserLogin)\n/* harmony export */ });\n/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./User */ \"./src/js/User.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\r\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\r\n    return new (P || (P = Promise))(function (resolve, reject) {\r\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\r\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\r\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\r\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\r\n    });\r\n};\r\n\r\nclass UserLogin {\r\n    constructor() {\r\n    }\r\n    attemptLogin(name, password) {\r\n        return __awaiter(this, void 0, void 0, function* () {\r\n            let user = new _User__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\r\n            yield fetch(`http://localhost:8082/users/${name}/${password}`)\r\n                .then((res) => res.json())\r\n                .then((json) => user.init(json))\r\n                .catch((error) => console.log(`Error: ${error.message}`));\r\n            return user;\r\n        });\r\n    }\r\n    signUp(user) {\r\n        return __awaiter(this, void 0, void 0, function* () {\r\n            let done = false;\r\n            yield fetch('http://localhost:8082/users/user', {\r\n                method: 'POST',\r\n                headers: {\r\n                    'Accept': 'application/json, text/plain, */*',\r\n                    'Content-type': 'application/json'\r\n                },\r\n                body: JSON.stringify({ id: 0, name: user.Name, email: user.Email, password: user.Password })\r\n            })\r\n                .then(() => done = true)\r\n                .catch((error) => console.log(`Error: ${error.message}`));\r\n            return done;\r\n        });\r\n    }\r\n}\r\n\n\n//# sourceURL=webpack://app/./src/js/UserService.ts?");
-
-/***/ }),
-
-/***/ "./src/js/newUser.ts":
-/*!***************************!*\
-  !*** ./src/js/newUser.ts ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/main.scss */ \"./src/css/main.scss\");\n/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./User */ \"./src/js/User.ts\");\n/* harmony import */ var _UserService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UserService */ \"./src/js/UserService.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\r\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\r\n    return new (P || (P = Promise))(function (resolve, reject) {\r\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\r\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\r\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\r\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\r\n    });\r\n};\r\nvar __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {\r\n    if (kind === \"m\") throw new TypeError(\"Private method is not writable\");\r\n    if (kind === \"a\" && !f) throw new TypeError(\"Private accessor was defined without a setter\");\r\n    if (typeof state === \"function\" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError(\"Cannot write private member to an object whose class did not declare it\");\r\n    return (kind === \"a\" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;\r\n};\r\nvar __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {\r\n    if (kind === \"a\" && !f) throw new TypeError(\"Private accessor was defined without a getter\");\r\n    if (typeof state === \"function\" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError(\"Cannot read private member from an object whose class did not declare it\");\r\n    return kind === \"m\" ? f : kind === \"a\" ? f.call(receiver) : f ? f.value : state.get(receiver);\r\n};\r\nvar _SignUp_form, _SignUp_userService;\r\n\r\n\r\n\r\nclass SignUp {\r\n    constructor(userService) {\r\n        _SignUp_form.set(this, void 0);\r\n        _SignUp_userService.set(this, void 0);\r\n        __classPrivateFieldSet(this, _SignUp_userService, userService, \"f\");\r\n        this.init();\r\n    }\r\n    init() {\r\n        __classPrivateFieldSet(this, _SignUp_form, document.querySelector(\"form\"), \"f\");\r\n        __classPrivateFieldGet(this, _SignUp_form, \"f\").addEventListener('submit', this.formSubmit.bind(this));\r\n    }\r\n    formSubmit(e) {\r\n        return __awaiter(this, void 0, void 0, function* () {\r\n            const user = new _User__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\r\n            const nameField = __classPrivateFieldGet(this, _SignUp_form, \"f\").querySelector('#name');\r\n            user.Name = nameField.value;\r\n            const emailField = __classPrivateFieldGet(this, _SignUp_form, \"f\").querySelector('#email');\r\n            user.Email = emailField.value;\r\n            const passwordField = __classPrivateFieldGet(this, _SignUp_form, \"f\").querySelector('#password');\r\n            user.Password = passwordField.value;\r\n            const result = yield __classPrivateFieldGet(this, _SignUp_userService, \"f\").signUp(user);\r\n            if (result) {\r\n                return true;\r\n            }\r\n        });\r\n    }\r\n}\r\n_SignUp_form = new WeakMap(), _SignUp_userService = new WeakMap();\r\nnew SignUp(new _UserService__WEBPACK_IMPORTED_MODULE_2__[\"default\"]());\r\n\n\n//# sourceURL=webpack://app/./src/js/newUser.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/main.scss */ \"./src/css/main.scss\");\n\r\n\n\n//# sourceURL=webpack://app/./src/js/posts.ts?");
 
 /***/ }),
 
@@ -270,7 +250,7 @@ eval("module.exports = __webpack_require__.p + \"6b3ba8f2c2aec49afde6.png\";\n\n
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"newUser": 0
+/******/ 			"posts": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -293,7 +273,7 @@ eval("module.exports = __webpack_require__.p + \"6b3ba8f2c2aec49afde6.png\";\n\n
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/newUser.ts");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/posts.ts");
 /******/ 	
 /******/ })()
 ;

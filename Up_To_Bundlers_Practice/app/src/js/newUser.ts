@@ -1,4 +1,4 @@
-import '../css/main.scss'
+import '../css/main.scss';
 import User from './User';
 import UserService from './UserService';
 

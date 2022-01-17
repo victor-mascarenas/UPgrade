@@ -16,7 +16,6 @@ class Login {
     }
 
     async formSubmit(e: Event): Promise<boolean> {
-        e.preventDefault();
         const nameField = this.#form.querySelector('#name') as HTMLInputElement;
         const name = nameField.value;
         const passwordField = this.#form.querySelector('#password') as HTMLInputElement;
