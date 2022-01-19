@@ -14,22 +14,36 @@
             <tr>
                 <th scope="row">Row\Col</td>
                 <th scope="col">Col 1</th>
-                <th scope="col">Col 2</th>
-                <th scope="col">Col 3</th>
+                <!-- <th scope="col">Col 2</th>
+                <th scope="col">Col 3</th> -->
+                <th scope="col" colspan="2">Cols 2 - 3</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th scope="row">Row 1</th>
-                <td>Row 1 Col 1</td>
-                <td>Row 1 Col 2</td>
-                <td>Row 1 Col 3</td>
+                <!-- <td>Row 1 Col 1</td>
+                <td>Row 1 Col 2</td> -->
+                <td colspan="2">Row 1 Cols 1 - 2</td>
+                <td rowspan="2">Rows 1 - 2 Col 3</td>
             </tr>
             <tr>
                 <th scope="row">Row 2</th>
                 <td>Row 2 Col 1</td>
                 <td>Row 2 Col 2</td>
-                <td>Row 2 Col 3</td>
+                <!-- <td>Row 2 Col 3</td> -->
+            </tr>
+            <tr>
+                <th scope="row" rowspan="2">Row 3 - 4</th>
+                <td>Row 3 Col 1</td>
+                <td>Row 3 Col 2</td>
+                <td>Row 3 Col 3</td>
+            </tr>
+            <tr>
+                <!-- <th scope="row">Row 4</th> -->
+                <td>Row 4 Col 1</td>
+                <td>Row 4 Col 2</td>
+                <td>Row 4 Col 3</td>
             </tr>
         </tbody>
         <tfoot>
