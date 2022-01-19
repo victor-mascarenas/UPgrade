@@ -1,3 +1,13 @@
 td, th {
     border: 2px solid;
+    width: 8em;
+}
+thead {
+    text-align: center;
+}
+tbody {
+    text-align: left;
+}
+tfoot {
+    text-align: right;
 }
