@@ -11,3 +11,9 @@ tbody {
 tfoot {
     text-align: right;
 }
+.one {
+    background-color: rgb(187, 71, 71);
+}
+.two-3-4 {
+    background-color: rgb(92, 92, 233);
+}
