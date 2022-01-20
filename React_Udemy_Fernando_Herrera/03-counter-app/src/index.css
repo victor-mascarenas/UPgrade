@@ -8,5 +8,6 @@ html, body {
 
 button {
     font-size: 1.3rem;
+    margin: 5px;
     padding: 10px;
 }
