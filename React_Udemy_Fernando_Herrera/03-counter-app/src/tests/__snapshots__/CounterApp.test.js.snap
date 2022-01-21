@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <CounterApp/> Debe ser igual a la snapshot (sin enviar valor) 1`] = `
+<div>
+  <h1>
+    Counter App
+  </h1>
+  <h2>
+    0
+  </h2>
+  <button
+    id="plusBtn"
+    onClick={[Function]}
+  >
+    +1
+  </button>
+  <button
+    id="resetBtn"
+    onClick={[Function]}
+  >
+    Reset
+  </button>
+  <button
+    id="minusBtn"
+    onClick={[Function]}
+  >
+    -1
+  </button>
+</div>
+`;

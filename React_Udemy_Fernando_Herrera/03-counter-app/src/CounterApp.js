@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { PropTypes } from "prop-types";
 
-const CounterApp = ({value = 0}) => {
+const CounterApp = ({value}) => {
     const [counter, setCounter] = useState(value);
     const plusBtnOnClick = () => {
         setCounter(counter + 1);
@@ -24,6 +24,9 @@ const CounterApp = ({value = 0}) => {
 }
 CounterApp.propTypes = {
     value: PropTypes.number
+}
+CounterApp.defaultProps = {
+    value: 0
 }
 
 export default CounterApp;
