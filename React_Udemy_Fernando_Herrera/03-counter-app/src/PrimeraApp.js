@@ -13,6 +13,7 @@ PrimeraApp.propTypes = {
     saludo: PropTypes.string.isRequired
 }
 PrimeraApp.defaultProps = {
+    saludo: 'Hola humano',
     subtitulo: 'Soy un subtitulo'
 }
 
