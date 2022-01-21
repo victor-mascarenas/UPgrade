@@ -3,17 +3,20 @@
 
 getImagenPromesa().then(console.log); */
 
-const getImagen = async () => {
-    const apiKey = 'RHHTxfPP13Hp2qPjeceyWuqAzfCetKkv';
+export const getImagen = async (apiKey) => {
+    //const apiKey = 'RHHTxfPP13Hp2qPjeceyWuqAzfCetKkv';
+    //const apiKey = 'RHHTxfPP13Hp2qPjeceyWuqAzfCetKkvf';
     try {
         const respuesta = await fetch(`http://api.giphy.com/v1/gifs/random?api_key=${apiKey}`);
         const {data} = await respuesta.json();
         const {url} = data.images.original;
-        const img = document.createElement('img');
+        /* const img = document.createElement('img');
         img.src = url;
-        document.body.append(img);
+        document.body.append(img); */
+        return url;
     } catch (error) {
-        console.error(error);
+        //console.error(error);
+        return 'No existe';
     }
 }
-getImagen();
+//getImagen();
