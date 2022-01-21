@@ -1,4 +1,4 @@
-import { getHeroeById, getHeroesByOwner } from "./bases/08-imp-exp";
+import { getHeroeById, getHeroesByOwner } from "./08-imp-exp";
 
 /* const promesa = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -16,7 +16,7 @@ promesa.then((heroe) => {
 })
 .catch((error) => console.warn(error)); */
 
-const getHeroeByIdAsync = (id) => {
+export const getHeroeByIdAsync = (id) => {
     const promesa = new Promise((resolve, reject) => {
         setTimeout(() => {
             const heroe = getHeroeById(id);
@@ -24,12 +24,12 @@ const getHeroeByIdAsync = (id) => {
                 reject('Not Found');
             }
             resolve(heroe);
-        }, 1000);
+        }, 1500);
     });
     return promesa;
 }
 
-getHeroeByIdAsync(1)
+//getHeroeByIdAsync(1)
     //.then(heroe => console.log('Heroe: ', heroe))
-    .then(console.log)
-    .catch(error => console.log(`Error: ${error}`));
+    //.then(console.log)
+    //.catch(error => console.log(`Error: ${error}`));
