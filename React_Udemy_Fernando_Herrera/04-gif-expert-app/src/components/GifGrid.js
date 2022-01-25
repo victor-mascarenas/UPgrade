@@ -20,20 +20,19 @@ export const GifGrid = ({category}) => {
                 url: img.images?.downsized_medium.url
             };
         });
-        console.log(gifs);
         setImages(gifs);
     };
 
     return(
         <>
             <h3>{category}</h3>
-            <ol>
+            <div className="card-grid">
                 {
                     images.map(img => {
                         return <GifGridItem key={img.id} {...img}/>;
                     })
                 }
-            </ol>
+            </div>
         </>
     );
 };
