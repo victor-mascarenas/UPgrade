@@ -1,27 +1,17 @@
 import React, {useState, useEffect} from 'react';
+import getGifs from '../helpers/getGifs';
 import GifGridItem from './GifGridItem';
 
 export const GifGrid = ({category}) => {
     const [images, setImages] = useState([]);
 
     //Se ejecuta cuando el componente es renderizado por primera vez
-    useEffect(() => {
-        getGifs();
-    }, []);
-
-    const getGifs = async () => {
-        const url = `https://api.giphy.com/v1/gifs/search?q=${category}&limit=10&api_key=RHHTxfPP13Hp2qPjeceyWuqAzfCetKkv`;
-        const res = await fetch(url);
-        const {data} = await res.json();
-        const gifs = data.map(img => {
-            return {
-                id: img.id,
-                title: img.title,
-                url: img.images?.downsized_medium.url
-            };
-        });
-        setImages(gifs);
-    };
+    useEffect(/* async  */() => {
+        //const gifs = await getGifs(category);
+        //setImages(gifs);
+        getGifs(category)
+            .then(setImages);
+    }, [category]);//Si categoria cambia vuelve a ejecutar el efecto
 
     return(
         <>

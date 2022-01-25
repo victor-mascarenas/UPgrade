@@ -11,7 +11,7 @@ const AddCategory = ({setCategories}) => {
     const formOnSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim().length > 2) {
-            setCategories(categories => [...categories, inputValue]);
+            setCategories(categories => [inputValue, ...categories]);
             setInputValue('');
         }
     }
