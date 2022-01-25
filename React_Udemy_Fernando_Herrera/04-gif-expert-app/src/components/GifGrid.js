@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
+import GifGridItem from './GifGridItem';
 
 export const GifGrid = ({category}) => {
-    const [count, setCount] = useState(0);
+    const [images, setImages] = useState([]);
 
     //Se ejecuta cuando el componente es renderizado por primera vez
     useEffect(() => {
@@ -9,7 +10,7 @@ export const GifGrid = ({category}) => {
     }, []);
 
     const getGifs = async () => {
-        const url = 'https://api.giphy.com/v1/gifs/search?q=naruto&limit=10&api_key=RHHTxfPP13Hp2qPjeceyWuqAzfCetKkv';
+        const url = `https://api.giphy.com/v1/gifs/search?q=${category}&limit=10&api_key=RHHTxfPP13Hp2qPjeceyWuqAzfCetKkv`;
         const res = await fetch(url);
         const {data} = await res.json();
         const gifs = data.map(img => {
@@ -20,14 +21,19 @@ export const GifGrid = ({category}) => {
             };
         });
         console.log(gifs);
+        setImages(gifs);
     };
-
-    //getGifs();
 
     return(
         <>
             <h3>{category}</h3>
-            <button onClick={() => setCount(count + 1)}></button>
+            <ol>
+                {
+                    images.map(img => {
+                        return <GifGridItem key={img.id} {...img}/>;
+                    })
+                }
+            </ol>
         </>
     );
 };
