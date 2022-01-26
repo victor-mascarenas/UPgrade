@@ -39,5 +39,7 @@ describe('Pruebas en <AddCategory/>', () => {
         input.simulate('change', e);
         wrapper.find('form').simulate('submit', {preventDefault: () => {}});
         expect(setCategories).toHaveBeenCalledTimes(1);
+        expect(setCategories).toHaveBeenCalledWith(expect.any(Function));
+        expect(input.prop('value')).toBe('');
     });
 });
