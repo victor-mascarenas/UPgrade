@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SimpleForm from './Components/01-useEffect/SimpleForm';
 //import CounterApp from './Components/01-useState/CounterApp';
-import CounterWithCustomHook from './Components/01-useState/CounterWithCustomHook';
+//import CounterWithCustomHook from './Components/01-useState/CounterWithCustomHook';
 //import HooksApp from './HooksApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <CounterWithCustomHook />,
+    <SimpleForm />,
     document.getElementById('root')
 );
 
