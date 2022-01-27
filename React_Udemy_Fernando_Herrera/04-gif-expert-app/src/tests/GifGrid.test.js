@@ -25,16 +25,24 @@ describe('Pruebas en el componente GifGrid', () => {
     });
     test('Debe de mostrar items cuando se cargan imagenes con useFetchGifs', () => {
         const mockReturn = {
-            data: [{
-                id: 'ABC',
-                url: 'https://sdsdf/sdf/etr/img.gif',
-                title: 'Imagen'
-            }],
+            data: [
+                {
+                    id: 'ABC',
+                    url: 'https://sdsdf/sdf/etr/img.gif',
+                    title: 'Imagen'
+                },
+                {
+                    id: 'EFG',
+                    url: 'https://htjyf/hjk78luj/img.gif',
+                    title: 'Imagen 2'
+                }
+            ],
             loading: false
         };
         useFetchGifs.mockReturnValue(mockReturn);
         wrapper = shallow(<GifGrid category={category}/>);
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.find('p').exists()).toBe(false);
+        expect(wrapper.find('GifGridItem').length).toBe(mockReturn.data.length);
     });
     
 });
