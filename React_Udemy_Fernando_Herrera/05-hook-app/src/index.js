@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 //import SimpleForm from './Components/01-useEffect/SimpleForm';
-import FormWithCustomHook from './Components/02-useEffect/FormWithCustomHook';
+//import FormWithCustomHook from './Components/02-useEffect/FormWithCustomHook';
+import MultipleCustomHooks from './Components/03-examples/MultipleCustomHooks';
 //import CounterApp from './Components/01-useState/CounterApp';
 //import CounterWithCustomHook from './Components/01-useState/CounterWithCustomHook';
 //import HooksApp from './HooksApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <FormWithCustomHook />,
+    <MultipleCustomHooks />,
     document.getElementById('root')
 );
 
