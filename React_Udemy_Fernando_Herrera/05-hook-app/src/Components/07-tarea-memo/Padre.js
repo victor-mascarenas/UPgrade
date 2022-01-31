@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import { Hijo } from './Hijo'
 import { useState } from 'react';
+import '../02-useEffect/effects.css';
 
 export const Padre = () => {
 
