@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MemoHook } from './Components/06-memos/MemoHook';
+import CallbackHook from './Components/06-memos/CallbackHook';
+// import { MemoHook } from './Components/06-memos/MemoHook';
 //import SimpleForm from './Components/01-useEffect/SimpleForm';
 //import FormWithCustomHook from './Components/02-useEffect/FormWithCustomHook';
 // import MultipleCustomHooks from './Components/03-examples/MultipleCustomHooks';
@@ -14,7 +15,7 @@ import { MemoHook } from './Components/06-memos/MemoHook';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <MemoHook />,
+    <CallbackHook />,
     document.getElementById('root')
 );
 
