@@ -42,6 +42,12 @@ export const TodoApp = () => {
         };
         dispatch(action);
     };
+    const pOnClick = (id) => {
+        dispatch({
+            type: 'toggle',
+            payload: id
+        });
+    };
 
     return (
         <div>
@@ -53,7 +59,7 @@ export const TodoApp = () => {
                         {
                             todos.map((todo, i) => {
                                 return <li key={todo.id} className='list-group-item'>
-                                    <p className='text-center'>
+                                    <p onClick={pOnClick.bind(null, todo.id)} className={todo.done && 'completed'}>
                                         {i + 1}. {todo.desc}
                                     </p>
                                     <button className='btn btn-danger' onClick={buttonOnClick.bind(null, todo.id)}>Borrar</button>

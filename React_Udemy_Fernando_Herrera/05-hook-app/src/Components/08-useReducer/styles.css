@@ -6,7 +6,7 @@ p {
     margin: 0px;
 }
 
-.complete {
+.completed {
     text-decoration: line-through;
 }
 .list-group-item {
