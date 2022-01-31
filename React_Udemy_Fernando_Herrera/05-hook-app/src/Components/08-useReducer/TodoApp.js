@@ -1,17 +1,41 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import './styles.css';
 import { todoReducer } from './todoReducer';
+import useForm from '../../hooks/useForm';
 
-const initialState = [{
-    id: new Date().getTime(),
-    desc: 'Aprender React',
-    done: false
-}];
+const init = () => {
+    return JSON.parse(localStorage.getItem('todos')) || [];
+};
 
 export const TodoApp = () => {
-    // const [state, dispatch]= useReducer(reducer, initialState, init);
-    const [todos]= useReducer(todoReducer, initialState);
-    
+    const [todos, dispatch]= useReducer(todoReducer, [], init);
+    const [{description}, inputOnChange, reset] = useForm({
+        description: ''
+    });
+    const input = useRef();
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
+
+    const formOnSubmit = (e) => {
+        e.preventDefault();
+        if (description.trim().length <= 1) {
+            return;
+        }
+        const newTodo = {
+            id: new Date().getTime(),
+            desc: description,
+            done: false
+        };
+        const action = {
+            type: 'add',
+            payload: newTodo
+        };
+        dispatch(action);
+        reset();
+        input.current.focus();
+    };
+
     return (
         <div>
             <h1>Todo App ({todos.length})</h1>
@@ -34,9 +58,9 @@ export const TodoApp = () => {
                 <div className='col-5'>
                     <h4>Agregar ToDo</h4>
                     <hr/>
-                    <form>
-                        <input type='text' name='desciption' placeholder='Comprar...' autoComplete='false' className='form-control'/>
-                        <button className='btn btn-outline-primary mt-1 col-12'>Agregar</button>
+                    <form onSubmit={formOnSubmit}>
+                        <input type='text' name='description' placeholder='Comprar...' autoComplete='false' className='form-control' onChange={inputOnChange} value={description} ref={input}/>
+                        <button className='btn btn-outline-primary mt-1 col-12' type='submit'>Agregar</button>
                     </form>
                 </div>
             </div>
