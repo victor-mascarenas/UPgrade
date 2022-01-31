@@ -1,5 +1,5 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 // import CallbackHook from './Components/06-memos/CallbackHook';
 // import { Padre } from './Components/07-tarea-memo/Padre';
 // import { MemoHook } from './Components/06-memos/MemoHook';
@@ -13,13 +13,14 @@
 //import CounterApp from './Components/01-useState/CounterApp';
 //import CounterWithCustomHook from './Components/01-useState/CounterWithCustomHook';
 //import HooksApp from './HooksApp';
-// import reportWebVitals from './reportWebVitals';
+import { TodoApp } from './Components/08-useReducer/TodoApp';
+import reportWebVitals from './reportWebVitals';
 
-/* ReactDOM.render(
-    <Padre />,
+ReactDOM.render(
+    <TodoApp />,
     document.getElementById('root')
-); */
+);
 
-// reportWebVitals();
+reportWebVitals();
 
-import './Components/08-useReducer/intro-reducer';
+// import './Components/08-useReducer/intro-reducer';
