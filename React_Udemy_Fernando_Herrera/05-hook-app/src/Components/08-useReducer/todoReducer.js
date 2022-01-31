@@ -4,7 +4,9 @@ export const todoReducer = (state, action) => {
             case 'add':
                 state = [...state, action.payload];
                 break;
-        
+            case 'delete':
+                state = state.filter((todo) => todo.id !== action.payload);
+                break;
             default:
                 break;
         }

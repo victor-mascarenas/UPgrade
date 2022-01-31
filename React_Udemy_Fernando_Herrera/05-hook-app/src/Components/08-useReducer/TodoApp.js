@@ -35,6 +35,13 @@ export const TodoApp = () => {
         reset();
         input.current.focus();
     };
+    const buttonOnClick = (id) => {
+        const action = {
+            type: 'delete',
+            payload: id
+        };
+        dispatch(action);
+    };
 
     return (
         <div>
@@ -49,7 +56,7 @@ export const TodoApp = () => {
                                     <p className='text-center'>
                                         {i + 1}. {todo.desc}
                                     </p>
-                                    <button className='btn btn-danger'>Borrar</button>
+                                    <button className='btn btn-danger' onClick={buttonOnClick.bind(null, todo.id)}>Borrar</button>
                                 </li>;
                             })
                         }
