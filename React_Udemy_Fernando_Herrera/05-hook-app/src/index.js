@@ -13,11 +13,12 @@ import ReactDOM from 'react-dom';
 //import CounterApp from './Components/01-useState/CounterApp';
 //import CounterWithCustomHook from './Components/01-useState/CounterWithCustomHook';
 //import HooksApp from './HooksApp';
-import { TodoApp } from './Components/08-useReducer/TodoApp';
+// import { TodoApp } from './Components/08-useReducer/TodoApp';
+import { MainApp } from './Components/09-useContext/MainApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <TodoApp />,
+    <MainApp />,
     document.getElementById('root')
 );
 
