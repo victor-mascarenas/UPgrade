@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, useRef } from 'react';
 import './styles.css';
 import { todoReducer } from './todoReducer';
 import useForm from '../../hooks/useForm';
+import { TodoList } from './TodoList';
 
 const init = () => {
     return JSON.parse(localStorage.getItem('todos')) || [];
@@ -22,25 +23,22 @@ export const TodoApp = () => {
         if (description.trim().length <= 1) {
             return;
         }
-        const newTodo = {
-            id: new Date().getTime(),
-            desc: description,
-            done: false
-        };
-        const action = {
+        dispatch({
             type: 'add',
-            payload: newTodo
-        };
-        dispatch(action);
+            payload: {
+                id: new Date().getTime(),
+                desc: description,
+                done: false
+            }
+        });
         reset();
         input.current.focus();
     };
     const buttonOnClick = (id) => {
-        const action = {
+        dispatch({
             type: 'delete',
             payload: id
-        };
-        dispatch(action);
+        });
     };
     const pOnClick = (id) => {
         dispatch({
@@ -55,18 +53,7 @@ export const TodoApp = () => {
             <hr/>
             <div className='row'>
                 <div className='col-7'>
-                    <ul className='list-group list-group-flush'>
-                        {
-                            todos.map((todo, i) => {
-                                return <li key={todo.id} className='list-group-item'>
-                                    <p onClick={pOnClick.bind(null, todo.id)} className={todo.done && 'completed'}>
-                                        {i + 1}. {todo.desc}
-                                    </p>
-                                    <button className='btn btn-danger' onClick={buttonOnClick.bind(null, todo.id)}>Borrar</button>
-                                </li>;
-                            })
-                        }
-                    </ul>
+                    <TodoList todos={todos} pOnClick={pOnClick} buttonOnClick={buttonOnClick}/>
                 </div>
                 <div className='col-5'>
                     <h4>Agregar ToDo</h4>
