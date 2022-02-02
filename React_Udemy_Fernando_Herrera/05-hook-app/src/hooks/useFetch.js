@@ -31,6 +31,13 @@ const useFetch = (url) => {
                         console.log('Set state no se llamo');
                     } */
                 // }, 4000);
+            })
+            .catch(() => {
+                setState({
+                    loading: false,
+                    error: 'No se pudo obtener la informacion', 
+                    data: null
+                });
             });
     }, [url]);
 
