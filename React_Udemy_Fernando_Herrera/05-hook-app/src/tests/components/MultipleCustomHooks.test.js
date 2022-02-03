@@ -1,6 +1,5 @@
 import React from "react";
 import {shallow} from 'enzyme';
-import {renderHook, act} from '@testing-library/react-hooks';
 import MultipleCustomHooks from "../../Components/03-examples/MultipleCustomHooks";
 import useFetch from "../../hooks/useFetch";
 import useCounter from "../../hooks/useCounter";
