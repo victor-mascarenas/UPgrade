@@ -2,7 +2,6 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import { UserContext } from '../../Components/09-useContext/UserContext';
 import { LoginPage } from '../../Components/09-useContext/LoginPage';
-import { act } from '@testing-library/react';
 
 describe('Pruebas en LoginPage', () => {
     const user = {
