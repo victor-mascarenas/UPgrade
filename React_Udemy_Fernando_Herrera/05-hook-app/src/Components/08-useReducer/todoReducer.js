@@ -1,3 +1,4 @@
+//Delete/toggle: paylod = id
 export const todoReducer = (state, action) => {
     if (action) {
         switch (action.type) {
