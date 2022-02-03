@@ -1,6 +1,5 @@
 import React from "react";
 import {shallow} from 'enzyme';
-import {renderHook, act} from '@testing-library/react-hooks';
 import { RealExampleRef } from "../../Components/04-useRef/RealExampleRef";
 
 describe('Pruebas en RealExampleRef', () => {
