@@ -27,9 +27,9 @@ export const HeroPage = () => {
         <ErrorCard header='Error' title='Heroe no encontrado' message={`${heroId} no existe`}/> :
         <div className='row mt-5'>
             <div className='col-4'>
-                <img className='img-thumbnail' src={imgPath} alt={hero.superhero}/>
+                <img className='img-thumbnail animate__animated animate__bounceInLeft' src={imgPath} alt={hero.superhero}/>
             </div>
-            <div className='col-8'>
+            <div className='col-8 animate__animated animate__fadeIn'>
                 <h3>{hero.superhero}</h3>
                 <ul className='list-group list-group-flush'>
                     <li className='list-group-item'>
