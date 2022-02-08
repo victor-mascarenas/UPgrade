@@ -20,6 +20,7 @@ export const SearchPage = () => {
     
     const handleSearch = (e) => {
         e.preventDefault();
+        localStorage.setItem('query', searchText);
         navigate(`?q=${searchText}`);
     };
 

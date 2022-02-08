@@ -7,6 +7,13 @@ export const LoginPage = () => {
     const {dispatch} = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const getLastPath = () => {
+        let lastPath = localStorage.getItem('lastPath') || '/';
+        const lastQuery = localStorage.getItem('query');
+        lastPath += lastQuery && `?q=${lastQuery}`;
+        return lastPath;
+    };
+
     const handleLogin = () => {
         const action= {
             type: types.login,
@@ -16,7 +23,7 @@ export const LoginPage = () => {
             }
         };
         dispatch(action);
-        navigate('/', {
+        navigate(getLastPath(), {
             replace: true//Reemplazar el historico de navegacion del navegador
         });
     };
