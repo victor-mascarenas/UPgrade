@@ -1,12 +1,20 @@
 import React, { useContext } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../auth/authContext';
+import { types } from '../../types/types';
 
 export const Navbar = () => {
-    const {user} = useContext(AuthContext);
+    const {user, dispatch} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
+        const action = {
+            type: types.logout,
+            payload: {
+                logged: false
+            }
+        };
+        dispatch(action);
         navigate('/login', {
             replace: true
         });
