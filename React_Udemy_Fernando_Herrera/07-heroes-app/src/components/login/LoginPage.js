@@ -10,7 +10,7 @@ export const LoginPage = () => {
     const getLastPath = () => {
         let lastPath = localStorage.getItem('lastPath') || '/';
         const lastQuery = localStorage.getItem('query');
-        lastPath += lastQuery && `?q=${lastQuery}`;
+        lastPath += lastQuery ? `?q=${lastQuery}` : '';
         return lastPath;
     };
 
