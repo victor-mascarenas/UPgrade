@@ -2,6 +2,13 @@ import { SearchPage } from "../../../components/search/SearchPage";
 import { mount } from 'Enzyme';
 import { MemoryRouter } from "react-router-dom";
 
+const mockNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: () => mockNavigate
+}));
+
 describe('Pruebas en SearchPage', () => {
     test('Debe de mostrarse correctamente con valores por defecto', () => {
         const wrapper = mount(
@@ -41,5 +48,24 @@ describe('Pruebas en SearchPage', () => {
         const errorCard = wrapper.find('ErrorCard');
         expect(errorCard.exists()).toBeTruthy();
         expect(errorCard.find('p').text().trim()).toBe(`Sin resultados para ${keyword}`);
+    });
+    test('Debe de llamar le navigate al nuevo URL', () => {
+        const wrapper = mount(
+            <MemoryRouter initialEntries={[`/search`]}>
+                <SearchPage/>
+            </MemoryRouter>
+        );
+        const keyword = 'batman';
+        wrapper.find('input').simulate('change', {
+            target: {
+                name: 'searchText',
+                value: keyword
+            }
+        });
+        wrapper.find('form').simulate('submit', {
+            preventDefault: () => {}
+        });
+        expect(mockNavigate).toHaveBeenCalledTimes(1);
+        expect(mockNavigate).toHaveBeenCalledWith(`?q=${keyword}`);
     });
 });

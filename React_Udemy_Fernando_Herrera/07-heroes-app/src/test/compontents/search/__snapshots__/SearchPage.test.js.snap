@@ -44,7 +44,7 @@ Array [
       </h4>
       <hr />
       <div
-        className="mt-3 card bg-warning text-dark mb-3"
+        className="mt-3 card bg-warning text-dark mb-3 animate__animated animate__fadeIn"
       >
         <div
           className="card-header"

@@ -43,7 +43,7 @@ export const SearchPage = () => {
                     {
                         (heroesFiltered.length > 0) ?
                             heroesFiltered.map(hero => {
-                                return <HeroCard key={hero.id} hero={hero}/>;
+                                return <HeroCard key={hero.id} hero={hero} animate={true}/>;
                             }) :
                         <ErrorCard title='Sin resultados' header='Resultados de busqueda' message={q.length === 0 ? 'Ingresa un termino de busqueda' : `Sin resultados para ${q}`}/>
                     }
