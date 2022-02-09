@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en SearchPage Debe de mostrarse correctamente con valores por defecto 1`] = `
+Array [
+  <h1>
+    Busqueda
+  </h1>,
+  <hr />,
+  <div
+    className="row"
+  >
+    <div
+      className="col-5"
+    >
+      <h4>
+        Buscar
+      </h4>
+      <hr />
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          autoComplete="off"
+          className="form-control"
+          name="searchText"
+          onChange={[Function]}
+          placeholder="Buscar un heroe"
+          type="text"
+          value=""
+        />
+        <button
+          className="btn btn-outline-primary mt-3 col-12"
+          type="submit"
+        >
+          Buscar
+        </button>
+      </form>
+    </div>
+    <div
+      className="col-7"
+    >
+      <h4>
+        Resultados
+      </h4>
+      <hr />
+      <div
+        className="mt-3 card bg-warning text-dark mb-3"
+      >
+        <div
+          className="card-header"
+        >
+          Resultados de busqueda
+        </div>
+        <div
+          className="card-body"
+        >
+          <h5
+            className="card-title"
+          >
+            Sin resultados
+          </h5>
+          <p
+            className="card-text"
+          >
+            Ingresa un termino de busqueda
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
