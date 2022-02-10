@@ -32,4 +32,27 @@ describe('Pruebas en HeroPage', () => {
         );
         expect(wrapper.find('.row').exists()).toBeTruthy();
     });
+    test('Debe de regresar a la pantalla anterior', () => {
+        const wrapper = mount(
+            <MemoryRouter initialEntries={['/hero/marvel-captain']}>
+                <Routes>
+                    <Route path='/hero/:heroId' element={<HeroPage/>}/>
+                </Routes>
+            </MemoryRouter>
+        );
+        wrapper.find('button').simulate('click');
+        expect(mockNavigate).toHaveBeenCalledTimes(1);
+        expect(mockNavigate).toHaveBeenCalledWith(-1);
+    });
+    test('Debe d emostrar el No hero Page si no tenemos un heroe', () => {
+        const wrapper = mount(
+            <MemoryRouter initialEntries={['/hero/marvel-captain65']}>
+                <Routes>
+                    <Route path='/hero/:heroId' element={<HeroPage/>}/>
+                    <Route path='/' element={<h1>No heroe</h1>}/>
+                </Routes>
+            </MemoryRouter>
+        );
+        expect(wrapper.text().trim()).toBe('No heroe');
+    });
 });
