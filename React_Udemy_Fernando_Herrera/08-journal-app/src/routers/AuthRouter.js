@@ -5,10 +5,14 @@ import { RegiterScreen } from '../components/auth/RegiterScreen'
 
 export const AuthRouter = () => {
     return (
-        <Routes>
-            <Route exact path='/login' element={<LoginScreen/>}/>
-            <Route exact path='/register' element={<RegiterScreen/>}/>
-            <Route path='*' element={<Navigate to='/auth/login'/>}/>
-        </Routes>
+        <div className='auth__main'>
+            <div className='auth__box-container'>
+                <Routes>
+                    <Route exact path='/login' element={<LoginScreen/>}/>
+                    <Route exact path='/register' element={<RegiterScreen/>}/>
+                    <Route path='*' element={<Navigate to='/auth/login'/>}/>
+                </Routes>
+            </div>
+        </div>
     )
 }
