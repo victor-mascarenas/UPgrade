@@ -1,0 +1,54 @@
+@mixin btn-events($color)
+    &:disabled
+        background-color: lighten($color, 15)
+    &:hover
+        background-color: darken($color, 10)
+
+.btn
+    @include pointer
+    background-color: transparent
+    border: none
+    color: white
+    font-size: 12px
+    padding: 7px 10px 7px 10px
+    transition: color 1s
+    &:focus
+        outline: none
+.btn-primary
+    @include btn-events($primary)
+    background-color: $primary
+    border-radius: 2px
+    transition: background-color .3s, color .3s
+.btn-block
+    width: 100%
+
+//Google btn
+
+.google-btn 
+    cursor: pointer
+    margin-top: 5px
+    background-color: #4285f4
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25)
+    transition: box-shadow .3s ease
+    height: 42px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    .google-icon-wrapper
+        background-color: $google-white
+        height: 42px
+        width: 42px
+        display: flex
+        align-items: center
+        justify-content: center
+    .google-icon 
+        width: 22px
+    .btn-text 
+        padding: 0 14px
+        color: $google-white
+        font-size: 14px
+        letter-spacing: 0.2px
+    &:hover 
+        box-shadow: 0 0 6px $google-blue
+    &:active 
+        background: $button-active-blue
