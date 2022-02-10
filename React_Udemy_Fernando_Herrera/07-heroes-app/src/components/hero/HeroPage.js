@@ -1,5 +1,5 @@
 import React from 'react';
-import { /* Navigate, */ useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { getHeroeById } from '../../selectors/getHeroeById';
 import { ErrorCard } from '../errors/ErrorCard';
 
@@ -10,11 +10,11 @@ export const HeroPage = () => {
     let imgPath;
 
     if (!hero) {
-        setTimeout(() => {
-            //return <Navigate to='/'/>;
-            navigate(-1);
-            return <></>;
-        }, 2000);
+        // setTimeout(() => {
+            return <Navigate to='/'/>;
+            // navigate(-1);
+            // return <></>;
+        // }, 2000);
     } else {
         imgPath = `/assets/${hero.id}.jpg`;
     }
