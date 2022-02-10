@@ -9,11 +9,13 @@
     background-color: transparent
     border: none
     color: white
-    font-size: 12px
+    font-size: 15px
     padding: 7px 10px 7px 10px
-    transition: color 1s
+    transition: color .3s
     &:focus
         outline: none
+    &:hover
+        color: darken(white, 20)
 .btn-primary
     @include btn-events($primary)
     background-color: $primary
