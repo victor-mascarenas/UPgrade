@@ -1,7 +1,9 @@
 import React from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { getImage } from '../../helpers/heroImages';
 import { getHeroeById } from '../../selectors/getHeroeById';
 import { ErrorCard } from '../errors/ErrorCard';
+//import batman from '../../assets/dc-batman.jpg';// estatico
 
 export const HeroPage = () => {
     const navigate = useNavigate();
@@ -16,7 +18,9 @@ export const HeroPage = () => {
             // return <></>;
         // }, 2000);
     } else {
-        imgPath = `/assets/${hero.id}.jpg`;
+        //imgPath = `/assets/${hero.id}.jpg`;
+        //imgPath = batman;//desde importacion
+        imgPath = getImage(hero.id);
     }
 
     const handleReturn = () => {
