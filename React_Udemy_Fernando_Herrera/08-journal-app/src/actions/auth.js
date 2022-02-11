@@ -9,6 +9,19 @@ export const startLogin = (email, password) => {
     };
 };
 
+export const startCredentialsRegistration = (email, password, name) => {
+    return (dispatch) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(async ({user}) => {
+                await user.updateProfile({
+                    displayName: name
+                });
+                dispatch(login(user.uid, user.displayName));
+            })
+            .catch(error => console.log(error));
+    };
+};
+
 export const startGoogleLogin = () => {
     return (dispatch) => {
         firebase.auth().signInWithPopup(googleAuthProvider)

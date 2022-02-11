@@ -4,6 +4,7 @@ import useForm from '../../hooks/useForm';
 import validator from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeError, setError } from '../../actions/ui';
+import { startCredentialsRegistration } from '../../actions/auth';
 
 export const RegiterScreen = () => {
     const {values: formValues, inputOnChange} = useForm({
@@ -19,7 +20,7 @@ export const RegiterScreen = () => {
     const handleRegister = (e) => {
         e.preventDefault();
         if (isFormValid()) {
-            console.log('correcto');
+            dispatch(startCredentialsRegistration(email, password, name))
         }
     };
 
