@@ -3,9 +3,11 @@ import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 
 export const startLogin = (email, password) => {
     return (dispatch) => {//dispatch comes from Thunk
-        setTimeout(() => {
-            dispatch(login(123, 'Pedro'));
-        }, 3500);
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(({user}) => {
+                dispatch(login(user.uid, user.displayName));
+            })
+            .catch(error => console.log(error));
     };
 };
 
