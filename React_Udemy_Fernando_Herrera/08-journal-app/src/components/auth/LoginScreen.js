@@ -1,13 +1,29 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { login } from '../../actions/auth';
+import useForm from '../../hooks/useForm';
 
 export const LoginScreen = () => {
+    const {values: formValues, inputOnChange} = useForm({
+        email: 'nando@gmail.com',
+        password: '123456'
+    });
+    const dispatch = useDispatch();
+
+    const {email, password} = formValues;
+
+    const loginSubmit = (e) => {
+        e.preventDefault();
+        dispatch(login(12345, 'Victor'));
+    };
+
     return (
         <>
             <h3 className='auth__title'>Login</h3>
-            <form>
-                <input className='auth__input' type='text' placeholder='Email' name='email' autoComplete='off'/>
-                <input className='auth__input' type='password' placeholder='Password' name='password'/>
+            <form onSubmit={loginSubmit}>
+                <input className='auth__input' type='text' placeholder='Email' name='email' autoComplete='off' value={email} onChange={inputOnChange}/>
+                <input className='auth__input' type='password' placeholder='Password' name='password' value={password} onChange={inputOnChange}/>
                 <button className='btn btn-primary btn-block' type='submit'>Login</button>
                 <div className='auth__social-networks'>
                     <p>Login woth social networks</p>
