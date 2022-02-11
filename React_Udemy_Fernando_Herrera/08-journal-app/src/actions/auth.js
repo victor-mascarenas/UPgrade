@@ -1,6 +1,7 @@
 import { types } from "../reducers/types/types";
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 import { endLoading, startLoading } from "./ui";
+import Swal from 'sweetalert2';
 
 export const startLogin = (email, password) => {
     return (dispatch) => {//dispatch comes from Thunk
@@ -12,7 +13,7 @@ export const startLogin = (email, password) => {
             })
             .catch(error => {
                 dispatch(endLoading());
-                console.log(error);
+                Swal.fire('Error', error.message, 'error');
             });
         
     };
@@ -27,7 +28,9 @@ export const startCredentialsRegistration = (email, password, name) => {
                 });
                 dispatch(login(user.uid, user.displayName));
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                Swal.fire('Error', error.message, 'error');
+            });
     };
 };
 
@@ -37,7 +40,9 @@ export const startGoogleLogin = () => {
             .then(({user}) => {
                 dispatch(login(user.uid, user.displayName));
             })
-            .catch((error) => console.log(`Ocurrio un error al conectar con Google: ${error}`));
+            .catch((error) => {
+                Swal.fire('Error', error.message, 'error');
+            });
     };
 };
 
