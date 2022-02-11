@@ -29,7 +29,7 @@ export const LoginScreen = () => {
             <form onSubmit={loginSubmit}>
                 <input className='auth__input' type='text' placeholder='Email' name='email' autoComplete='off' value={email} onChange={inputOnChange}/>
                 <input className='auth__input' type='password' placeholder='Password' name='password' value={password} onChange={inputOnChange}/>
-                <button className='btn btn-primary btn-block' type='submit' disabled={state.auth.loading ? true : false}>Login</button>
+                <button className='btn btn-primary btn-block' type='submit' disabled={state.ui.loading ? true : false}>Login</button>
                 <div className='auth__social-networks'>
                     <p>Login woth social networks</p>
                     <div className="google-btn" onClick={handleGoogleLogin}>

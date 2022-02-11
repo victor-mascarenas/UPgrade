@@ -1,7 +1,7 @@
 @mixin btn-events($color)
     &:disabled
         background-color: lighten($color, 15)
-    &:hover
+    &:hover:enabled
         background-color: darken($color, 10)
 
 .btn
@@ -15,7 +15,7 @@
         outline: none
 .btn[class='btn']
     transition: color .3s
-    &:hover
+    &:hover:enabled
         color: darken(white, 20)
 .btn-primary
     @include btn-events($primary)

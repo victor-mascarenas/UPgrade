@@ -14,3 +14,15 @@ export const removeError = () => {
         type: types.UI_REMOVE_ERROR
     });
 };
+
+export const startLoading = () => {
+    return ({
+        type: types.UI_START_LOADING
+    });
+};
+
+export const endLoading = () => {
+    return ({
+        type: types.UI_END_LOADING
+    });
+};

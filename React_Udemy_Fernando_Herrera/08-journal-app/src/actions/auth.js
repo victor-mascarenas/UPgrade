@@ -1,13 +1,20 @@
 import { types } from "../reducers/types/types";
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
+import { endLoading, startLoading } from "./ui";
 
 export const startLogin = (email, password) => {
     return (dispatch) => {//dispatch comes from Thunk
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(({user}) => {
-                dispatch(login(user.uid, user.displayName));
+            .then(async ({user}) => {
+                dispatch(startLoading());
+                await dispatch(login(user.uid, user.displayName));
+                dispatch(endLoading());
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                dispatch(endLoading());
+                console.log(error);
+            });
+        
     };
 };
 
