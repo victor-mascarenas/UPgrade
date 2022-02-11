@@ -6,6 +6,8 @@ import { firebase } from '../firebase/firebase-config';
 import { useDispatch } from 'react-redux';
 import { login } from '../actions/auth';
 import { LobbyScreen } from '../components/auth/LobbyScreen';
+import { PublicRoutes } from './PublicRoutes';
+import { PrivateRoutes } from './PrivateRoutes';
 
 export const AppRouter = () => {
     const dispatch = useDispatch();
@@ -25,14 +27,21 @@ export const AppRouter = () => {
 
     if (checking) {
         return <LobbyScreen/>;
-    }
-    return (
-        <BrowserRouter>
+    } else {
+        return <BrowserRouter>
             <Routes>
-                <Route path='/auth/*' element={<AuthRouter/>}/>
-                <Route exact path='/' element={<JournalScreen/>}/>
+                <Route path='/auth/*' element={
+                    <PublicRoutes isLoggedIn={isLoggedIn}>
+                        <AuthRouter/>
+                    </PublicRoutes>
+                }/>
+                <Route exact path='/' element={
+                    <PrivateRoutes isLoggedIn={isLoggedIn}>
+                        <JournalScreen/>
+                    </PrivateRoutes>
+                }/>
                 <Route path='*' element={<Navigate to='/auth/login'/>}/>
             </Routes>
-        </BrowserRouter>
-    );
+        </BrowserRouter>;
+    }
 }
