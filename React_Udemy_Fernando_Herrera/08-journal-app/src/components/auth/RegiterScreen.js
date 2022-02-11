@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import useForm from '../../hooks/useForm';
 import validator from 'validator';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeError, setError } from '../../actions/ui';
 
 export const RegiterScreen = () => {
@@ -13,6 +13,7 @@ export const RegiterScreen = () => {
         confirmPassword: '123456'
     });
     const dispatch = useDispatch();
+    const state = useSelector(state => state);
     const {name, email, password, confirmPassword} = formValues;
 
     const handleRegister = (e) => {
@@ -54,9 +55,8 @@ export const RegiterScreen = () => {
             <h3 className='auth__title'>Create an account</h3>
             <form onSubmit={handleRegister}>
                 {
-                    <div className='auth__alert-error'>
-                        Campos no validos
-                    </div>
+                    (state.ui.msgError) &&
+                        <div className='auth__alert-error'>{state.ui.msgError}</div>
                 }
                 <input className='auth__input' type='text' placeholder='Name' name='name' autoComplete='off' value={name} onChange={inputOnChange}/>
                 <input className='auth__input' type='text' placeholder='Email' name='email' autoComplete='off' value={email} onChange={inputOnChange}/>
