@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import useForm from '../../hooks/useForm';
 import validator from 'validator';
+import { useDispatch } from 'react-redux';
+import { removeError, setError } from '../../actions/ui';
 
 export const RegiterScreen = () => {
     const {values: formValues, inputOnChange} = useForm({
@@ -10,6 +12,7 @@ export const RegiterScreen = () => {
         password: '123456',
         confirmPassword: '123456'
     });
+    const dispatch = useDispatch();
     const {name, email, password, confirmPassword} = formValues;
 
     const handleRegister = (e) => {
@@ -19,19 +22,28 @@ export const RegiterScreen = () => {
         }
     };
 
+    const dispatchError = (msg, set = true) => {
+        if (set) {
+            dispatch(setError(msg));
+        } else {
+            dispatch(removeError());
+        }
+    };
+
     const isFormValid = () => {
         let valid = false;
         if (name.trim().length === 0) {
-            console.log('Name is required');
-        } else if (!validator.isEmail(email)) {
-            console.log('Email is not valid');
+            dispatchError('Name is required');
         } else if (email.trim().length === 0) {
-            console.log('Email is required');
+            dispatchError('Email is required');
+        } else if (!validator.isEmail(email)) {
+            dispatchError('Email is not valid');
         } else if (password !== confirmPassword) {
-            console.log('Passwords are ot the same');
+            dispatchError('Passwords are ot the same');
         } else if (password.trim().length < 5) {
-            console.log('Password needs to be at least 5 characters long');
+            dispatchError('Password needs to be at least 5 characters long');
         } else {
+            dispatchError('', false);
             valid = true;
         }
         return valid;
@@ -41,9 +53,11 @@ export const RegiterScreen = () => {
         <>
             <h3 className='auth__title'>Create an account</h3>
             <form onSubmit={handleRegister}>
-                <div className='auth__alert-error'>
-                    Campos no validos
-                </div>
+                {
+                    <div className='auth__alert-error'>
+                        Campos no validos
+                    </div>
+                }
                 <input className='auth__input' type='text' placeholder='Name' name='name' autoComplete='off' value={name} onChange={inputOnChange}/>
                 <input className='auth__input' type='text' placeholder='Email' name='email' autoComplete='off' value={email} onChange={inputOnChange}/>
                 <input className='auth__input' type='password' placeholder='Password' name='password' value={password} onChange={inputOnChange}/>
