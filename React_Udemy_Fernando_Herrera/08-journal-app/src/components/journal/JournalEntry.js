@@ -16,7 +16,7 @@ export const JournalEntry = ({note}) => {
     };
 
     return (
-        <div className='journal__entry' onClick={handleClick}>
+        <div className='journal__entry animate__animated animate__fadeIn' onClick={handleClick}>
             {
                 (note.url) &&
                     <div className='journal__entry-picture' style={style}></div>

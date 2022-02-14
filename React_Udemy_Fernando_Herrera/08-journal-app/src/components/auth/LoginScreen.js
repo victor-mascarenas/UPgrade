@@ -25,7 +25,7 @@ export const LoginScreen = () => {
     return (
         <>
             <h3 className='auth__title'>Login</h3>
-            <form onSubmit={loginSubmit}>
+            <form onSubmit={loginSubmit} className='animate__animated animate__fadeIn'>
                 <input className='auth__input' type='text' placeholder='Email' name='email' autoComplete='off' value={email} onChange={inputOnChange}/>
                 <input className='auth__input' type='password' placeholder='Password' name='password' value={password} onChange={inputOnChange}/>
                 <button className='btn btn-primary btn-block' type='submit' disabled={state.ui.loading ? true : false}>Login</button>

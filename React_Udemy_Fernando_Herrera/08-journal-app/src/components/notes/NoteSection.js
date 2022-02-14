@@ -23,7 +23,7 @@ export const NoteSection = () => {
     };
 
     return (
-        <div className='notes__main-content'>
+        <div className='notes__main-content animate__animated animate__fadeIn'>
             <NoteAppBar/>
             <div className='notes__content'>
                 <input type='text' placeholder='Some awesome title' className='notes__title-input' name='title' value={title} onChange={inputOnChange}/>
