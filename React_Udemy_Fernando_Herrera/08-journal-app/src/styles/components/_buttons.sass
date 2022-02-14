@@ -1,4 +1,5 @@
 @mixin btn-events($color)
+    transition: background-color .3s, color .3s
     &:disabled
         background-color: lighten($color, 15)
     &:hover:enabled
@@ -8,6 +9,7 @@
     @include pointer
     background-color: transparent
     border: none
+    border-radius: 2px
     color: white
     font-size: 15px
     padding: 7px 10px 7px 10px
@@ -20,10 +22,11 @@
 .btn-primary
     @include btn-events($primary)
     background-color: $primary
-    border-radius: 2px
-    transition: background-color .3s, color .3s
 .btn-block
     width: 100%
+.btn-danger
+    @include btn-events(red)
+    background-color: red
 
 //Google btn
 

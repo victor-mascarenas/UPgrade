@@ -13,9 +13,18 @@ export const startNewNote = () => {
             date: new Date().getTime()
         };
         const docRef = await db.collection(`${uid}/journal/notes`).add(newNote);
+        dispatch(addNew({
+            ...newNote,
+            id: docRef.id
+        }));
         dispatch(activeNote(docRef.id, newNote));
     };
 };
+
+export const addNew = (note) => ({
+    type: types.NOTES_ADD_NEW,
+    payload: note
+});
 
 export const activeNote = (id, note) => ({
     type: types.NOTES_ACTIVE,
@@ -86,3 +95,20 @@ export const startUploading = (file) => {
         Swal.close();
     };
 };
+
+export const startDeleting = (id) => {
+    return async(dispatch, getState) => {
+        const uid = getState().auth.uid;
+        await db.doc(`${uid}/journal/notes/${id}`).delete();
+        dispatch(deleteNote(id));
+    };
+};
+
+export const deleteNote = (id) => ({
+    type: types.NOTES_DELETE,
+    payload: id
+});
+
+export const notesLogout = () => ({
+    type: types.NOTES_LOGOUT_CLEANING
+});

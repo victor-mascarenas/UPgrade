@@ -2,6 +2,7 @@ import { types } from "../reducers/types/types";
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 import { endLoading, startLoading } from "./ui";
 import Swal from 'sweetalert2';
+import { notesLogout } from "./notes";
 
 export const startLogin = (email, password) => {
     return (dispatch) => {//dispatch comes from Thunk
@@ -60,6 +61,7 @@ export const startLogout = () => {
     return async (dispatch) => {
         await firebase.auth().signOut();
         dispatch(logout());
+        dispatch(notesLogout());
     };
 };
 
