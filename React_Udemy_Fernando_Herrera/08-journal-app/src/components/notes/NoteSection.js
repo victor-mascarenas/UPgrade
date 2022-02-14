@@ -31,7 +31,7 @@ export const NoteSection = () => {
                 {
                     (note.url) &&
                         <div className='notes__images'>
-                            <img src='https://bombaykitchencabinets.com/wp-content/uploads/2021/11/Modular-Kitchen-in-Etobicoke.png' alt='Cocina'/>
+                            <img src={note.url} alt='Cocina'/>
                         </div>
                 }
             </div>

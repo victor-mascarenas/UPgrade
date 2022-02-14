@@ -51,7 +51,8 @@ export const startSaveNote = (note) => {
             title: 'Saved',
             body: note.title,
             icon: 'success',
-            timer: 1000
+            timer: 1000,
+            showConfirmButton: false
         });
     };
 };
@@ -70,7 +71,18 @@ export const  refreshNote = (id, note) => ({
 export const startUploading = (file) => {
     return async (dispatch, getState) => {
         const activeNote = getState().notes.active;
+        Swal.fire({
+            title: 'Uploading...',
+            text: 'Please wait',
+            allowOutsideClick: false,
+            willOpen: () => {
+                Swal.showLoading();
+            },
+            showConfirmButton: false
+        });
         const fileUrl = await fileUpload(file);
-        console.log(fileUrl);
+        activeNote.url = fileUrl;
+        dispatch(startSaveNote(activeNote));
+        Swal.close();
     };
 };
