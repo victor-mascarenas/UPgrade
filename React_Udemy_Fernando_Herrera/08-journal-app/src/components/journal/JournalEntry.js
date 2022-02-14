@@ -11,9 +11,16 @@ export const JournalEntry = ({note}) => {
         dispatch(activeNote(note.id, note));
     };
 
+    const style = {
+        backgroundImage: `url(${note.url})`
+    };
+
     return (
         <div className='journal__entry' onClick={handleClick}>
-            <div className='journal__entry-picture'></div>
+            {
+                (note.url) &&
+                    <div className='journal__entry-picture' style={style}></div>
+            }
             <div className='journal__entry-body'>
                 <p className='journal__entry-title'>{note.title}</p>
                 <p className='journal__entry-content'>{note.body}</p>
