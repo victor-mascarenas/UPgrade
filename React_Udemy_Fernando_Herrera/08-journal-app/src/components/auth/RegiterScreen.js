@@ -39,8 +39,7 @@ export const RegiterScreen = () => {
         } else if (email.trim().length === 0) {
             dispatchError('Email is required');
         } else if (!validator.isEmail(email)) {
-            //dispatchError('Email is not valid');
-            dispatch(setError('Email is not valid'));
+            dispatchError('Email is not valid');
         } else if (password !== confirmPassword) {
             dispatchError('Passwords are ot the same');
         } else if (password.trim().length < 5) {

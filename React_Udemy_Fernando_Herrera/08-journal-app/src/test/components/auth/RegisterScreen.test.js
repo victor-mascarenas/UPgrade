@@ -10,13 +10,10 @@ import { types } from '../../../reducers/types/types';
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 const initState = {
-    auth: {
-        uid: 'TESTING',
-        displayName: null
-    },
+    auth: {},
     ui: {
         loading: false,
-        errorMsg: ''
+        msgError: ''
     }
 };
 const store = mockStore(initState);
@@ -30,9 +27,9 @@ const wrapper = mount(
 );
 
 describe('Pruebas en RegisterScreen', () => {
-    beforeEach(() => {
+    /* beforeEach(() => {
         store.clearActions();
-    });
+    }); */
 
     test('Debe mostrarse correctamente', () => {
         expect(wrapper).toMatchSnapshot();
@@ -55,5 +52,24 @@ describe('Pruebas en RegisterScreen', () => {
                 errorMsg: 'Email is required'
             }
         });
+    });
+    test('Debe de mostrar la caja con el error', () => {
+        const initState = {
+            auth: {},
+            ui: {
+                loading: false,
+                msgError: 'Email is required'
+            }
+        };
+        const store = mockStore(initState);
+        const wrapper = mount(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <RegiterScreen/>
+                </MemoryRouter>
+            </Provider>
+        );
+        expect(wrapper.find('.auth__alert-error').exists()).toBeTruthy();
+        expect(wrapper.find('.auth__alert-error').text().trim()).toBe(initState.ui.msgError);
     });
 });
