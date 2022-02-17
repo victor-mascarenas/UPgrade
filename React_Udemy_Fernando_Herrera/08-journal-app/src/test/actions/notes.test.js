@@ -1,17 +1,22 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { startNewNote } from '../../actions/notes';
+import { startLoadingNotes, startNewNote } from '../../actions/notes';
 import { types } from '../../reducers/types/types';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
-const store = mockStore({
+const initState = {
     auth: {
         uid: 'TESTING'
     }
-});
+};
+let store;
 
 describe('Pruebas en acciones de notes', () => {
+    beforeEach(() => {
+        store = mockStore(initState);
+    });
+
     test('Debe crear una nueva nota startNewDate', async () => {
         const payload = {
             id: expect.any(String),
@@ -28,6 +33,14 @@ describe('Pruebas en acciones de notes', () => {
         expect(actions[1]).toEqual({
             type: types.NOTES_ACTIVE,
             payload
+        });
+    });
+    test('startLoadingNotes debe cargar las notas', async () => {
+        await store.dispatch(startLoadingNotes(initState.auth.uid));
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: types.NOTES_LOAD,
+            payload: expect.any(Array)
         });
     });
 });
