@@ -1,6 +1,6 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { startLoadingNotes, startNewNote } from '../../actions/notes';
+import { startLoadingNotes, startNewNote, startSaveNote } from '../../actions/notes';
 import { types } from '../../reducers/types/types';
 
 const middlewares = [thunk];
@@ -35,12 +35,36 @@ describe('Pruebas en acciones de notes', () => {
             payload
         });
     });
-    test('startLoadingNotes debe cargar las notas', async () => {
-        await store.dispatch(startLoadingNotes(initState.auth.uid));
-        const actions = store.getActions();
-        expect(actions[0]).toEqual({
-            type: types.NOTES_LOAD,
-            payload: expect.any(Array)
-        });
+    test('Debe de cargar las notas', () => {
+        store.dispatch(startLoadingNotes(initState.auth.uid))
+            .then(() => {
+                const actions = store.getActions();
+                expect(actions[0]).toEqual({
+                    type: types.NOTES_LOAD,
+                    payload: expect.any(Array)
+                });
+                const expected = {
+                    id: expect.any(String),
+                    title: expect.any(String),
+                    body: expect.any(String),
+                    date: expect.any(Number)
+                };
+                expect(actions[0].payload[0]).toMatchObject(expected);
+            });
+    });
+    test('Debe de actualizar la nota', () => {
+        const note = {
+            id: 'EUr1Q5IjTv70oiXXBAex',
+            title: 'Un titulo',
+            body: 'Soy el body'
+        };
+        store.dispatch(startSaveNote(note))
+            .then(async () => {
+                const actions = store.getActions();
+                expect(actions[0].type).toBe(types.NOTES_UPDATED);
+                expect(actions[0].payload.note).toEqual(note);
+                const docRef = await db.doc(`${uid}/journal/notes/${note.id}`).get();
+                expect(docRef.data().title).toBe(note.title);
+            });
     });
 });
