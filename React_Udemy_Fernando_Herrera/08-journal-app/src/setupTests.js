@@ -9,3 +9,10 @@ Enzyme.configure({
 expect.addSnapshotSerializer(createSerializer({
     mode: 'deep'
 }));
+
+//Para elementos que utilizan scroll
+const noScroll = () => {};
+Object.defineProperty(window, 'scrollTo', {
+    value: noScroll,
+    writable: true
+});

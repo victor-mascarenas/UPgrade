@@ -12,12 +12,16 @@ export const startNewNote = () => {
             body: '',
             date: new Date().getTime()
         };
-        const docRef = await db.collection(`${uid}/journal/notes`).add(newNote);
-        dispatch(addNew({
-            ...newNote,
-            id: docRef.id
-        }));
-        dispatch(activeNote(docRef.id, newNote));
+        try {
+            const docRef = await db.collection(`${uid}/journal/notes`).add(newNote);
+            dispatch(addNew({
+                ...newNote,
+                id: docRef.id
+            }));
+            dispatch(activeNote(docRef.id, newNote));
+        } catch (error) {
+            //console.log(error);
+        }
     };
 };
 
@@ -54,15 +58,19 @@ export const startSaveNote = (note) => {
         }
         const noteToFirestore = {...note};
         delete noteToFirestore.id;
-        await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
-        dispatch(refreshNote(note.id, noteToFirestore));
-        Swal.fire({
-            title: 'Saved',
-            body: note.title,
-            icon: 'success',
-            timer: 1000,
-            showConfirmButton: false
-        });
+        try {
+            await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+            dispatch(refreshNote(note.id, noteToFirestore));
+            Swal.fire({
+                title: 'Saved',
+                text: note.title,
+                icon: 'success',
+                timer: 1000,
+                showConfirmButton: false
+            });
+        } catch(error) {
+            //console.log(error);
+        }
     };
 };
 
@@ -89,18 +97,27 @@ export const startUploading = (file) => {
             },
             showConfirmButton: false
         });
-        const fileUrl = await fileUpload(file);
-        activeNote.url = fileUrl;
-        dispatch(startSaveNote(activeNote));
-        Swal.close();
+        try {
+            const fileUrl = await fileUpload(file);
+            activeNote.url = fileUrl;
+            dispatch(startSaveNote(activeNote));
+        } catch(error) {
+            //console.log(error);
+        } finally {
+            Swal.close();
+        }
     };
 };
 
 export const startDeleting = (id) => {
     return async(dispatch, getState) => {
         const uid = getState().auth.uid;
-        await db.doc(`${uid}/journal/notes/${id}`).delete();
-        dispatch(deleteNote(id));
+        try {
+            await db.doc(`${uid}/journal/notes/${id}`).delete();
+            dispatch(deleteNote(id));
+        } catch(error) {
+            //console.log(error);
+        }
     };
 };
 
