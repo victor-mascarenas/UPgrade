@@ -7,16 +7,15 @@ import { notesLogout } from "./notes";
 export const startLogin = (email, password) => {
     return (dispatch) => {//dispatch comes from Thunk
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(async ({user}) => {
+            .then(({user}) => {
                 dispatch(startLoading());
-                await dispatch(login(user.uid, user.displayName));
+                dispatch(login(user.uid, user.displayName));
                 dispatch(endLoading());
             })
             .catch(error => {
                 dispatch(endLoading());
                 Swal.fire('Error', error.message, 'error');
             });
-        
     };
 };
 
