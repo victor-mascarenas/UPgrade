@@ -8,7 +8,7 @@ const mockStore = configureStore(middlewares);
 const initState = {
     auth: {
         uid: 'TESTING',
-        displayName: ''
+        displayName: null
     },
     ui: {
         loading: false,
@@ -37,19 +37,25 @@ describe('Pruebas con las acciones de auth', () => {
             type: types.LOGOUT
         });
     });
+    test('Debe iniciar el logout', async () => {
+        await store.dispatch(startLogout());
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: types.LOGOUT
+        });
+        expect(actions[1]).toEqual({
+            type: types.NOTES_LOGOUT_CLEANING
+        });
+    });
     test('Debe iniciar el login', async () => {
         await store.dispatch(startLogin('nando@gmail.com', '123456'));
         const actions = store.getActions();
-        console.log(actions);
-    });
-    test('Debe iniciar el logout', async () => {
-        await store.dispatch(startLogout());
-        const actions2 = store.getActions();
-        expect(actions2[0]).toEqual({
-            type: types.LOGOUT
+        expect(actions[0]).toEqual({
+            type: types.UI_START_LOADING
         });
-        expect(actions2[1]).toEqual({
-            type: types.NOTES_LOGOUT_CLEANING
+        //login is not appearing
+        expect(actions[actions.length - 1]).toEqual({
+            type: types.UI_END_LOADING
         });
     });
 });
