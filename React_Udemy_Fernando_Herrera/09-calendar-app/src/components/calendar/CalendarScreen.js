@@ -2,21 +2,39 @@ import React from 'react';
 import { Navbar } from '../ui/Navbar';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
+import 'moment/locale/es';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { messages } from '../../helpers/calendar-messages-esp';
+
+moment.locale('es');
 
 const localizer = momentLocalizer(moment);
 const events = [{
     title: 'Cumpleaños del jefe',
     start: moment().toDate(),
     end: moment().add(2, 'hours').toDate(),
-    bgcolor: '#fafafa'
+    bgcolor: '#fafafa',
+    notes: 'Comprar el pastel'
 }];
 
 export const CalendarScreen = () => {
+    const eventStyleGetter = (event, start, end, isSelected) => {
+        const style = {
+            backgroundColor: '#367cf7',
+            boderRadius: '0px',
+            opacity: 0.8,
+            display: 'block',
+            color: 'white'
+        };
+        return {
+            style
+        };
+    };
+
     return (
         <div className='calendar-screen'>
             <Navbar/>
-            <Calendar localizer={localizer} events={events}/>
+            <Calendar localizer={localizer} events={events} messages={messages} eventPropGetter={eventStyleGetter}/>
         </div>
     )
 };
