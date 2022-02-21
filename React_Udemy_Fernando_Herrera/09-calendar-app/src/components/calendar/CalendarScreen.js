@@ -9,8 +9,9 @@ import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
-import { eventSetActive } from '../../actions/events';
+import { eventClearActive, eventSetActive } from '../../actions/events';
 import { AddNewFab } from '../ui/AddNewFab';
+import { DeleteEventFab } from '../ui/DeleteEventFab';
 
 moment.locale('es');
 
@@ -19,8 +20,9 @@ const localizer = momentLocalizer(moment);
 export const CalendarScreen = () => {
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
     const dispatch = useDispatch();
-    const {events} = useSelector(state => state.calendar);
-
+    const {events, active} = useSelector(state => state.calendar);
+    const {modalOpen} = useSelector(state => state.ui);
+    
     const eventStyleGetter = (event, start, end, isSelected) => {
         const style = {
             backgroundColor: '#367cf7',
@@ -44,13 +46,19 @@ export const CalendarScreen = () => {
         setLastView(e);
         localStorage.setItem('lastView', e);
     };
+    const onSelectSlot = (e) => {
+        if (active) {
+            dispatch(eventClearActive());
+        }
+    };
 
     return (
         <div className='calendar-screen'>
             <Navbar/>
-            <Calendar localizer={localizer} events={events} messages={messages} eventPropGetter={eventStyleGetter} onDoubleClickEvent={onDoubleClick} onSelectEvent={onSelect} onView={onViewChanged} view={lastView} components={{
+            <Calendar localizer={localizer} events={events} messages={messages} eventPropGetter={eventStyleGetter} onDoubleClickEvent={onDoubleClick} onSelectEvent={onSelect} onView={onViewChanged} view={lastView} onSelectSlot={onSelectSlot} selectable={true} components={{
                 event: CalendarEvent
             }}/>
+            {(active && !modalOpen) && <DeleteEventFab/>}
             <AddNewFab/>
             <CalendarModal/>
         </div>

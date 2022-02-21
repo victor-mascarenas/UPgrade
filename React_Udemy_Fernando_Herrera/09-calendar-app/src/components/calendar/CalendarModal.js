@@ -37,6 +37,8 @@ export const CalendarModal = () => {
     useEffect(() => {
         if (active) {
             setFormValues(active);
+        } else {
+            setFormValues(initEvent);
         }
     }, [active]);
 
@@ -107,7 +109,7 @@ export const CalendarModal = () => {
 
     return (
         <Modal isOpen={modalOpen} onAfterOpen={onAfterOpen} onRequestClose={onRequestClose} style={customStyles} className='modal' overlayClassName='modal-fondo' closeTimeoutMS={200}>
-            <h1> Nuevo evento </h1>
+            <h1>{active ? 'Modificar evento' : 'Nuevo evento'}</h1>
             <hr />
             <form className="container" onSubmit={handleSubmit}>
                 <div className="form-group">

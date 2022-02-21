@@ -48,6 +48,15 @@ export const calendarReducer = (state = initialState, action) => {
                 )
             };
             break;
+        case types.EVENT_DELETED:
+            state = {
+                ...state,
+                events: state.events.filter(
+                    event => (event.id !== state.active.id)
+                ),
+                active: null
+            };
+            break;
         default:
             break;
     }
