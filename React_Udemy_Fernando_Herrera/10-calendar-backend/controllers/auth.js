@@ -1,29 +1,40 @@
 const {response} = require("express");
-
+const {validationResult} = require('express-validator');
 
 const createUser = (req, res = response) => {
     let resp;
     const {name, email, password} = req.body;
-    if (name.length < 5) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
         resp = res.status(400).json({
             ok: false,
-            msg: 'El nombre debe de ser de 5 letras'
+            errors: errors.mapped()
+        });
+    } else {
+        resp = res.status(201).json({
+            ok: true,
+            msg: 'register',
+            name,
+            email,
+            password
         });
     }
-    resp = res.status(201).json({
-        ok: true,
-        msg: 'register',
-        name,
-        email,
-        password
-    });
     return resp;
 };
 const userLogin = (req, res = response) => {
-    res.json({
-        ok: true,
-        msg: 'login'
-    });
+    let resp;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        resp = res.status(400).json({
+            ok: false,
+            errors: errors.mapped()
+        });
+    } else {
+        resp = res.json({
+            ok: true,
+            msg: 'login'
+        });
+    }
 };
 const revalidateToken = (req, res = response) => {
     res.json({
