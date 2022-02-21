@@ -4,6 +4,8 @@ import './modal.css';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 import Swal from 'sweetalert2';
+import { useDispatch, useSelector } from 'react-redux';
+import { uiCloseModal } from '../../actions/ui';
 
 const customStyles = {
     content: {
@@ -28,6 +30,8 @@ export const CalendarModal = () => {
         end: endDate
     });
     const [titleValid, setTitleValid] = useState(true);
+    const dispatch = useDispatch();
+    const {modalOpen} = useSelector(state => state.ui);
 
     const {notes, title, start, end} = formValues;
 
@@ -35,7 +39,7 @@ export const CalendarModal = () => {
         
     };
     const onRequestClose = () => {
-        //Cerrar
+        dispatch(uiCloseModal());
     };
     const handleStartDateChange = (e) => {
         setStartDate(e);
@@ -72,7 +76,7 @@ export const CalendarModal = () => {
     };
 
     return (
-        <Modal isOpen={true} onAfterOpen={onAfterOpen} onRequestClose={onRequestClose} style={customStyles} className='modal' overlayClassName='modal-fondo' closeTimeoutMS={200}>
+        <Modal isOpen={modalOpen} onAfterOpen={onAfterOpen} onRequestClose={onRequestClose} style={customStyles} className='modal' overlayClassName='modal-fondo' closeTimeoutMS={200}>
             <h1> Nuevo evento </h1>
             <hr />
             <form className="container" onSubmit={handleSubmit}>
