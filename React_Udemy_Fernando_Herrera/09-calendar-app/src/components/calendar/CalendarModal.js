@@ -6,6 +6,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
+import { eventAddNew } from '../../actions/events';
 
 const customStyles = {
     content: {
@@ -63,16 +64,32 @@ export const CalendarModal = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (validateForm()) {
+            dispatch(eventAddNew({
+                ...formValues,
+                id: new Date().getTime(),
+                user: {
+                    _id: '123',
+                    name: 'Victor'
+                }
+            }));
+            setTitleValid(true);
+            onRequestClose();
+        }
+    };
+
+    const validateForm = () => {
+        const valid = false;
         const momentStart = moment(start);
         const momentEnd = moment(end);
         if (momentStart.isSameOrAfter(momentEnd)) {
-            return Swal.fire('Error', 'Fecha de fin debe ser mayor a la de inicio', 'error');
+            Swal.fire('Error', 'Fecha de fin debe ser mayor a la de inicio', 'error');
+        } else if (title.trim().length < 2) {
+            setTitleValid(false);
+        } else {
+            valid = true;
         }
-        if (title.trim().length < 2) {
-            return setTitleValid(false);
-        }
-        setTitleValid(true);
-        onRequestClose();
+        return valid;
     };
 
     return (
