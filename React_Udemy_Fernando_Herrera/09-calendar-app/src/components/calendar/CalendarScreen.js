@@ -49,6 +49,7 @@ export const CalendarScreen = () => {
     };
     const onSelect = (e) => {
         dispatch(eventSetActive(e));
+        dispatch(uiOpenModal());
     };
     const onViewChanged = (e) => {
         setLastView(e);
