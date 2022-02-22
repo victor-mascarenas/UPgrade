@@ -67,11 +67,19 @@ const userLogin = async (req, res = response) => {
     }
     return resp;
 };
-const revalidateToken = (req, res = response) => {
-    res.json({
-        ok: true,
-        msg: 'renew token'
-    });
+const revalidateToken = async (req, res = response) => {
+    let resp;
+    const {uid, name} = req;
+    try {
+        const token = await generateJWT(uid, name);
+        resp = res.status(200).json({
+            ok: true,
+            token
+        });
+    } catch (error) {
+        resp = generateGeneric(res, 500, 'Por favor contacta al administrador');
+    }
+    return resp;
 };
 
 module.exports = {
