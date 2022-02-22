@@ -5,20 +5,15 @@ const validateFields = require('../middlewares/field-validator');
 const { validateJWT } = require('../middlewares/token-validator');
 
 const router = Router();
+router.use(validateJWT);
 
-router.get('/', [
-    validateJWT
-], getEvents);
+router.get('/', getEvents);
 router.post('/', [
-    validateFields,
-    validateJWT
+    validateFields
 ], createEvent);
 router.put('/:id', [
-    validateFields,
-    validateJWT
+    validateFields
 ], updateEvent);
-router.delete('/:id', [
-    validateJWT
-], deleteEvent);
+router.delete('/:id', deleteEvent);
 
 module.exports = router;
