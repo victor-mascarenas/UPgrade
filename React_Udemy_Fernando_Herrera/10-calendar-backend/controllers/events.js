@@ -2,6 +2,9 @@ const {response} = require("express");
 const { generateGeneric } = require("../helpers/responseGenerator");
 
 const getEvents = async (req, res = response) => {
+    
+
+
     return generateGeneric(res, 200, 'getEvents');
 };
 const createEvent = async (req, res = response) => {
