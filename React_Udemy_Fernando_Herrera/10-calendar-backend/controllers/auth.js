@@ -1,16 +1,28 @@
 const {response} = require("express");
 const User = require("../models/User");
+const { use } = require("../routes/auth");
 
 const createUser = async (req, res = response) => {
     let resp;
-    //const {name, email, password} = req.body;
-    const user = new User(req.body);
+    const {name, email, password} = req.body;
     try {
-        await user.save();
-        resp = res.status(201).json({
-            ok: true,
-            msg: 'register'
+        let dbUser = await User.findOne({
+            email
         });
+        if (dbUser) {
+            resp = res.status(400).json({
+                ok: false,
+                msg: 'El correo ya esta asignado a un usuario'
+            });
+        } else {
+            const user = new User(req.body);
+            await user.save();
+            resp = res.status(201).json({
+                ok: true,
+                uid: user.id,
+                name: user.name
+            });
+        }
     } catch (error) {
         resp = res.status(500).json({
             ok: false,
