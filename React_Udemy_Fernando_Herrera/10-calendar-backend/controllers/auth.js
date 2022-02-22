@@ -1,15 +1,22 @@
 const {response} = require("express");
+const User = require("../models/User");
 
-const createUser = (req, res = response) => {
+const createUser = async (req, res = response) => {
     let resp;
-    const {name, email, password} = req.body;
-    resp = res.status(201).json({
-        ok: true,
-        msg: 'register',
-        name,
-        email,
-        password
-    });
+    //const {name, email, password} = req.body;
+    const user = new User(req.body);
+    try {
+        await user.save();
+        resp = res.status(201).json({
+            ok: true,
+            msg: 'register'
+        });
+    } catch (error) {
+        resp = res.status(500).json({
+            ok: false,
+            msg: 'Por favor contacte al administrador'
+        });
+    }
     return resp;
 };
 const userLogin = (req, res = response) => {
