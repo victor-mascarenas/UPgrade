@@ -1,21 +1,30 @@
 const {response} = require("express");
+const { encrypt } = require("../helpers/crypto");
 const User = require("../models/User");
-const { use } = require("../routes/auth");
+
+const isEmailRelatedToAnyUser = (email) => {
+    let related = false;
+    const dbUser = await User.findOne({
+        email
+    });
+    if (dbUser) {
+        related = true;
+    }
+    return related;
+};
 
 const createUser = async (req, res = response) => {
     let resp;
-    const {name, email, password} = req.body;
+    const {email, password} = req.body;
     try {
-        let dbUser = await User.findOne({
-            email
-        });
-        if (dbUser) {
+        if (isEmailRelatedToAnyUser(email)) {
             resp = res.status(400).json({
                 ok: false,
                 msg: 'El correo ya esta asignado a un usuario'
             });
         } else {
             const user = new User(req.body);
+            user.password = encrypt(password);
             await user.save();
             resp = res.status(201).json({
                 ok: true,
