@@ -3,7 +3,17 @@ const { generateGeneric } = require("../helpers/responseGenerator");
 const Event = require("../models/Event");
 
 const getEvents = async (req, res = response) => {
-    return generateGeneric(res, 200, 'getEvents');
+    let resp;
+    try {
+        const events = await Event.find().populate('user', 'name');
+        resp = res.status(200).json({
+            ok: true,
+            events
+        });
+    } catch(error) {
+        resp = generateGeneric(res, 500, 'Contacte al administrador');
+    }
+    return resp;
 };
 const createEvent = async (req, res = response) => {
     let resp;
