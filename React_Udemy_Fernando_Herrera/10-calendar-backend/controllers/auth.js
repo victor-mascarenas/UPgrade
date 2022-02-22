@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs/dist/bcrypt");
 const {response} = require("express");
 const { encrypt } = require("../helpers/crypto");
 const { generateGeneric } = require("../helpers/responseGenerator");
+const { generateJWT } = require("../helpers/tokens");
 const User = require("../models/User");
 
 const isEmailRelatedToAnyUser = async (email) => {
@@ -19,16 +20,18 @@ const createUser = async (req, res = response) => {
     let resp;
     const {email, password} = req.body;
     try {
-        if (isEmailRelatedToAnyUser(email)) {
+        if (await isEmailRelatedToAnyUser(email)) {
             resp = generateGeneric(res, 400, 'El correo ya esta asignado a un usuario');
         } else {
             const user = new User(req.body);
             user.password = encrypt(password);
             await user.save();
+            const token = await generateJWT(user.id, user.name);
             resp = res.status(201).json({
                 ok: true,
                 uid: user.id,
-                name: user.name
+                name: user.name,
+                token
             });
         }
     } catch (error) {
@@ -50,10 +53,12 @@ const userLogin = async (req, res = response) => {
             if (!validPassword) {
                 resp = generateGeneric(res, 400, 'Contraseña invalida');
             } else {
+                const token = await generateJWT(dbUser.id, dbUser.name);
                 resp = res.status(201).json({
                     ok: true,
                     uid: dbUser.id,
-                    name: dbUser.name
+                    name: dbUser.name,
+                    token
                 });
             }
         }
