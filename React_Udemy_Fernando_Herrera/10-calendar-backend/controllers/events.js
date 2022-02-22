@@ -31,7 +31,34 @@ const createEvent = async (req, res = response) => {
     return resp;
 };
 const updateEvent = async (req, res = response) => {
-    return generateGeneric(res, 200, 'updateEvent');
+    let resp;
+    const eventId = req.params.id;
+    const uid = req.uid;
+    try {
+        const event = await Event.findById(eventId);
+        if (event) {
+            if (event.user.toString() !== uid) {
+                generateGeneric(res, 401, 'No cuentas con sficientes privilegios para modificar este evento');
+            } else {
+                const newEvent = {
+                    ...req.body,
+                    user: uid
+                };
+                const updatedEvent = await Event.findByIdAndUpdate(eventId, newEvent, {
+                    new: true
+                });
+                resp = res.status(200).json({
+                    ok: true,
+                    evento: updatedEvent
+                });
+            }
+        } else {
+            generateGeneric(res, 404, 'El evento solicitado no existe');
+        }
+    } catch(error) {
+        resp = generateGeneric(res, 500, 'Contacte al administrador');
+    }
+    return resp;
 };
 const deleteEvent = async (req, res = response) => {
     return generateGeneric(res, 200, 'deleteEvent');
