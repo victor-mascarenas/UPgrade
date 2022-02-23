@@ -23,17 +23,27 @@ html, body {
 .fab {
     border-radius: 100%;
     bottom: 25px;
+    box-shadow: 0px 0px 5px 1px rgb(32, 32, 201);
     font-size: 30px;
     height: 80px;
     padding: 25px;
     position: fixed;
     right: 25px;
+    transition: box-shadow .3s;
     width: 80px;
+}
+.fab:hover {
+    box-shadow: 0px 0px 5px 3px rgb(32, 32, 201);
 }
 .fab-danger {
     border-radius: 2px;
     bottom: 25px;
+    box-shadow: 0px 0px 5px 1px red;
     left: 25px;
     padding: 10;
     position: fixed;
+    transition: box-shadow .3s;
+}
+.fab-danger:hover {
+    box-shadow: 0px 0px 5px 3px red;
 }
