@@ -44,8 +44,27 @@ export const startRegister = (email, password, name) => {
         }
     };
 };
+export const startChecking = () => {
+    return async (dispatch) => {
+        const res = await fetchWithToken('auth/renew');
+        const body = await res.json();
+        if (body.ok) {
+            storeToken(body.token);
+            dispatch(login({
+                uid: body.uid,
+                name: body.name
+            }));
+        } else {
+            Swal.fire('Error', body.msg, 'error');
+            dispatch(checkingFinish());
+        }
+    };
+};
 
 const login = (user) => ({
     type: types.AUTH_LOGIN,
     payload: user
+});
+const checkingFinish = () => ({
+    type: types.AUTH_CHECKING_FINISHED
 });

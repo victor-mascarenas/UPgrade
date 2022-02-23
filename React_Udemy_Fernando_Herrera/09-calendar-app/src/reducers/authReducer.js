@@ -15,6 +15,12 @@ export const authReducer = (state = initialStte, action) => {
                 ...action.payload
             };
             break;
+        case types.AUTH_CHECKING_FINISHED:
+            state = {
+                ...state,
+                checking: false
+            };
+            break;
         default:
             break;
     }

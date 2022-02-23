@@ -16,3 +16,28 @@ export const fetchWithoutToken = (endpoint, data, method = 'GET') => {
     }
     return res;
 };
+export const fetchWithToken = (endpoint, data, method = 'GET') => {
+    const getHeaders = (token) => {
+        return {
+            'Content-type': 'application/json',
+            'x-token': token
+        };
+    };
+
+    let res;
+    const token = localStorage.getItem('token') || '';
+    const url = `${baseUrl}/${endpoint}`;
+    if (method === 'GET') {
+        res = fetch(url, {
+            method,
+            heeaders: getHeaders(token)
+        });
+    } else {
+        res = fetch(url, {
+            method,
+            headers: getHeaders(token),
+            body: JSON.stringify(data)
+        });
+    }
+    return res;
+};
