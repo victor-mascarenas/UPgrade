@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { startLogin } from '../../actions/auth';
+import Swal from 'sweetalert2';
+import { startLogin, startRegister } from '../../actions/auth';
 import useForm from '../../hooks/useForm';
 import './login.css';
 
@@ -8,16 +9,32 @@ const initialLoginForm = {
     loginEmail: 'mario@gmail.com',
     loginPassword: '123456'
 };
+const initialRegisterForm = {
+    registerName: 'Nando',
+    registerEmail: 'nando@gmail.com',
+    registerPassword: '123456',
+    registerPassword2: '123456'
+};
 
 export const Login = () => {
     const dispatch = useDispatch();
     const {values: loginValues, inputOnChange: loginInputOnChange, reset: loginReset} = useForm(initialLoginForm);
+    const {values: registerValues, inputOnChange: registerInputOnChange, reset: registerReset} = useForm(initialRegisterForm);
 
     const {loginEmail, loginPassword} = loginValues;
+    const {registerName, registerEmail, registerPassword, registerPassword2} = registerValues;
 
     const loginOnSubmit = (e) => {
         e.preventDefault();
         dispatch(startLogin(loginEmail, loginPassword));
+    };
+    const registerOnSubmit = (e) => {
+        e.preventDefault();
+        if (registerPassword !== registerPassword2) {
+            Swal.fire('Error', 'Las contraseñas no coinciden', 'error');
+        } else {
+            dispatch(startRegister(registerEmail, registerPassword, registerName));
+        }
     };
 
     return (
@@ -39,18 +56,18 @@ export const Login = () => {
                 </div>
                 <div className="col-md-6 login-form-2">
                     <h3>Registro</h3>
-                    <form>
+                    <form onSubmit={registerOnSubmit}>
                         <div className="form-group">
-                            <input type="text" className="form-control" placeholder="Nombre"/>
+                            <input type="text" className="form-control" placeholder="Nombre" name='registerName' value={registerName} onChange={registerInputOnChange}/>
                         </div>
                         <div className="form-group">
-                            <input type="email" className="form-control" laceholder="Correo"/>
+                            <input type="email" className="form-control" laceholder="Correo" name='registerEmail' value={registerEmail} onChange={registerInputOnChange}/>
                         </div>
                         <div className="form-group">
-                            <input type="password" className="form-control" placeholder="Contraseña"/>
+                            <input type="password" className="form-control" placeholder="Contraseña" name='registerPassword' value={ registerPassword} onChange={registerInputOnChange}/>
                         </div>
                         <div className="form-group">
-                            <input type="password" className="form-control" placeholder="Repita la contraseña"/>
+                            <input type="password" className="form-control" placeholder="Repita la contraseña" name='registerPassword2' value={registerPassword2} onChange={registerInputOnChange}/>
                         </div>
                         <div className="form-group">
                             <input type="submit" className="btnSubmit btn" value="Crear cuenta"/>
