@@ -4,7 +4,7 @@
 
 Deployed app comes from this repository: https://github.com/victor-mascarenas/10-calendar-backend
 
-## Accessing resources
+## Accessing API resources
 
 1. Add app URL: https://<!--This is a comment-->mern-calendar-vm.herokuapp.com/
 2. Add resource.
@@ -30,3 +30,7 @@ Deployed app comes from this repository: https://github.com/victor-mascarenas/10
 4. Full URL example.
 
         https://mern-calendar-vm.herokuapp.com/api/auth/new
+
+## Using App
+
+        https://mern-calendar-vm.herokuapp.com
