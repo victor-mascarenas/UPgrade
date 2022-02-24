@@ -10,6 +10,7 @@ export const types = {
     EVENT_DELETED: '[EVENT] Event Deleted',
     EVENT_SLOT_SELECTED: '[EVENT] Slot Selected',
     EVENT_LOADED: '[EVENT] Events Loaded',
+    EVENT_CLEANING: '[EVENT] Event Cleaning',
     //
     AUTH_CHECKING: '[AUTH] Checking Login Status',
     AUTH_CHECKING_FINISHED: '[AUTH] Finish Checking Login Status',

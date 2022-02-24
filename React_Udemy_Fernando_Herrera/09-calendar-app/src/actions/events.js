@@ -15,6 +15,9 @@ const eventUpdated = (event) => ({
     type: types.EVENT_UPDATED,
     payload: event
 });
+const eventDeleted = () => ({
+    type: types.EVENT_DELETED
+});
 
 export const eventStartAddNew = (event) => {
     return async (dispatch, getState) => {
@@ -68,6 +71,22 @@ export const eventStartUpdate = (event) => {
         }
     };
 };
+export const eventStartDelete = () => {
+    return async (dispatch, getState) => {
+        const {id} = getState().calendar.active;
+        try {
+            const resp = await fetchWithToken(`events/${id}`, {}, 'DELETE');
+            const body = await resp.json();
+            if (body.ok) {
+                dispatch(eventDeleted());
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+        } catch (error) {
+            Swal.fire('Error', error.message, 'error');
+        }
+    };
+};
 
 export const eventSetActive = (event) => ({
     type: types.EVENT_SET_ACTIVE,
@@ -76,13 +95,13 @@ export const eventSetActive = (event) => ({
 export const eventClearActive = () => ({
     type: types.EVENT_CLEAR_ACTIVE
 });
-export const eventDeleted = () => ({
-    type: types.EVENT_DELETED
-});
 export const eventSlotSelected = (start, end) => ({
     type: types.EVENT_SLOT_SELECTED,
     payload: {
         start,
         end
     }
+});
+export const eventCleaning = () => ({
+    type: types.EVENT_CLEANING
 });

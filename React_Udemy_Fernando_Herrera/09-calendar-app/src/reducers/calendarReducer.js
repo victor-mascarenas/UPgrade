@@ -61,6 +61,13 @@ export const calendarReducer = (state = initialState, action) => {
                 ]
             };
             break;
+        case types.EVENT_CLEANING:
+            state = {
+                events: [],
+                active: null,
+                selectedSlot: null
+            };
+            break;
         default:
             break;
     }
