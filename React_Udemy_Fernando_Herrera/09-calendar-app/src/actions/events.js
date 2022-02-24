@@ -1,28 +1,48 @@
+import Swal from "sweetalert2";
+import { fetchWithToken } from "../helpers/fetch";
 import { types } from "../types/types"
 
-export const eventAddNew = (event) => ({
+const eventAddNew = (event) => ({
     type: types.EVENT_ADD_NEW,
     payload: event
 });
+
+export const eventStartAddNew = (event) => {
+    return async (dispatch, getState) => {
+        const {uid, name} = getState().auth;
+        try {
+            const resp = await fetchWithToken('events', event, 'POST');
+            const body = await resp.json();
+            if (body.ok) {
+                event.id = body.evento.id;
+                event.user = {
+                    _id: uid,
+                    name
+                };
+                dispatch(eventAddNew(event));
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+        } catch(error) {
+            Swal.fire('Error', error.message, 'error');
+        }
+    };
+};
 
 export const eventSetActive = (event) => ({
     type: types.EVENT_SET_ACTIVE,
     payload: event
 });
-
 export const eventClearActive = () => ({
     type: types.EVENT_CLEAR_ACTIVE
 });
-
 export const eventUpdated = (event) => ({
     type: types.EVENT_UPDATED,
     payload: event
 });
-
 export const eventDeleted = () => ({
     type: types.EVENT_DELETED
 });
-
 export const eventSlotSelected = (start, end) => ({
     type: types.EVENT_SLOT_SELECTED,
     payload: {
