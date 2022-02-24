@@ -6,7 +6,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
-import { eventClearActive, eventStartAddNew, eventUpdated } from '../../actions/events';
+import { eventClearActive, eventStartAddNew, eventStartUpdate } from '../../actions/events';
 
 const customStyles = {
     content: {
@@ -80,7 +80,7 @@ export const CalendarModal = () => {
         e.preventDefault();
         if (validateForm()) {
             if (active) {
-                dispatch(eventUpdated(formValues));
+                dispatch(eventStartUpdate(formValues));
             } else {
                 dispatchStartAddNew();
             }

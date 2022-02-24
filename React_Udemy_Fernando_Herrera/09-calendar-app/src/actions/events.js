@@ -11,6 +11,10 @@ const eventLoaded = (events) => ({
     type: types.EVENT_LOADED,
     payload: events
 });
+const eventUpdated = (event) => ({
+    type: types.EVENT_UPDATED,
+    payload: event
+});
 
 export const eventStartAddNew = (event) => {
     return async (dispatch, getState) => {
@@ -49,6 +53,21 @@ export const eventStartLoading = () => {
         }
     };
 };
+export const eventStartUpdate = (event) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchWithToken(`events/${event.id}`, event, 'PUT');
+            const body = await resp.json();
+            if (body.ok) {
+                dispatch(eventUpdated(event));
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+        } catch (error) {
+            Swal.fire('Error', error.message, 'error');
+        }
+    };
+};
 
 export const eventSetActive = (event) => ({
     type: types.EVENT_SET_ACTIVE,
@@ -56,10 +75,6 @@ export const eventSetActive = (event) => ({
 });
 export const eventClearActive = () => ({
     type: types.EVENT_CLEAR_ACTIVE
-});
-export const eventUpdated = (event) => ({
-    type: types.EVENT_UPDATED,
-    payload: event
 });
 export const eventDeleted = () => ({
     type: types.EVENT_DELETED
