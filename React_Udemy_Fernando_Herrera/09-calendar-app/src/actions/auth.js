@@ -55,9 +55,14 @@ export const startChecking = () => {
                 name: body.name
             }));
         } else {
-            Swal.fire('Error', body.msg, 'error');
             dispatch(checkingFinish());
         }
+    };
+};
+export const startLogout = () => {
+    return (dispatch) => {
+        localStorage.clear();
+        dispatch(logout());
     };
 };
 
@@ -67,4 +72,7 @@ const login = (user) => ({
 });
 const checkingFinish = () => ({
     type: types.AUTH_CHECKING_FINISHED
+});
+const logout = () => ({
+    type: types.AUTH_LOGOUT
 });
