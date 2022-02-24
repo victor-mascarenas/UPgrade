@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import '@testing-library/jest-dom';
 import { startLogin } from '../../actions/auth';
 import { types } from '../../types/types';
+import Swal from 'sweetalert2';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -10,6 +11,10 @@ const initState = {};
 let store = mockStore(initState);
 
 Storage.prototype.setItem = jest.fn();
+
+jest.mock('sweetalert2', () => ({
+    fire: jest.fn()
+}));
 
 describe('Pruebas en las acciones de Auth', () => {
     beforeEach(() => {
@@ -29,5 +34,11 @@ describe('Pruebas en las acciones de Auth', () => {
         });
         expect(localStorage.setItem).toHaveBeenCalledWith('token', expect.any(String));
         expect(localStorage.setItem).toHaveBeenCalledWith('token-start', expect.any(Number));
+    });
+    test('StartLogin incorrecto', async () => {
+        await store.dispatch(startLogin('mario@gmail.com', '123dfg456'));
+        const actions = store.getActions();
+        expect(actions).toEqual([]);
+        expect(Swal.fire).toHaveBeenCalledTimes(1);
     });
 });
