@@ -6,6 +6,10 @@ const eventAddNew = (event) => ({
     type: types.EVENT_ADD_NEW,
     payload: event
 });
+const eventLoaded = (events) => ({
+    type: types.EVENT_LOADED,
+    payload: events
+});
 
 export const eventStartAddNew = (event) => {
     return async (dispatch, getState) => {
@@ -24,6 +28,22 @@ export const eventStartAddNew = (event) => {
                 Swal.fire('Error', body.msg, 'error');
             }
         } catch(error) {
+            Swal.fire('Error', error.message, 'error');
+        }
+    };
+};
+export const eventStartLoading = () => {
+    return async (dispatch) => {
+        try {
+            const res = await fetchWithToken('events');
+            const body = res.json();
+            if (body.ok) {
+                //fechas
+                dispatch(eventLoaded(body.eventos));
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+        } catch (error) {
             Swal.fire('Error', error.message, 'error');
         }
     };
