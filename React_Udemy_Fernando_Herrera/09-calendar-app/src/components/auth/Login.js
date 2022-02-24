@@ -61,7 +61,7 @@ export const Login = () => {
                             <input type="text" className="form-control" placeholder="Nombre" name='registerName' value={registerName} onChange={registerInputOnChange}/>
                         </div>
                         <div className="form-group">
-                            <input type="email" className="form-control" laceholder="Correo" name='registerEmail' value={registerEmail} onChange={registerInputOnChange}/>
+                            <input type="email" className="form-control" placeholder="Correo" name='registerEmail' value={registerEmail} onChange={registerInputOnChange}/>
                         </div>
                         <div className="form-group">
                             <input type="password" className="form-control" placeholder="Contraseña" name='registerPassword' value={ registerPassword} onChange={registerInputOnChange}/>
