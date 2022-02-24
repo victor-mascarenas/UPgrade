@@ -22,13 +22,14 @@ export const CalendarScreen = () => {
     const dispatch = useDispatch();
     const {events, active} = useSelector(state => state.calendar);
     const {modalOpen} = useSelector(state => state.ui);
+    const {uid} = useSelector(state => state.auth);
     useEffect(() => {
         dispatch(eventStartLoading());
     }, [dispatch]);
 
     const eventStyleGetter = (event, start, end, isSelected) => {
         const style = {
-            backgroundColor: '#367cf7',
+            backgroundColor: uid === event.user._id ? '#367cf7' : '#465660',
             boderRadius: '0px',
             opacity: 0.8,
             display: 'block',
