@@ -30,7 +30,7 @@ export const fetchWithToken = (endpoint, data, method = 'GET') => {
     if (method === 'GET') {
         res = fetch(url, {
             method,
-            heeaders: getHeaders(token)
+            headers: getHeaders(token)
         });
     } else {
         res = fetch(url, {

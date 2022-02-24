@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { fetchWithoutToken } from "../helpers/fetch";
+import { fetchWithoutToken, fetchWithToken } from "../helpers/fetch";
 import { types } from "../types/types";
 
 const storeToken = (token) => {
