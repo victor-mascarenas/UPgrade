@@ -6,14 +6,14 @@ import useForm from '../../hooks/useForm';
 import './login.css';
 
 const initialLoginForm = {
-    loginEmail: 'mario@gmail.com',
-    loginPassword: '123456'
+    loginEmail: '',
+    loginPassword: ''
 };
 const initialRegisterForm = {
-    registerName: 'Nando',
-    registerEmail: 'nando@gmail.com',
-    registerPassword: '123456',
-    registerPassword2: '123456'
+    registerName: '',
+    registerEmail: '',
+    registerPassword: '',
+    registerPassword2: ''
 };
 
 export const Login = () => {
