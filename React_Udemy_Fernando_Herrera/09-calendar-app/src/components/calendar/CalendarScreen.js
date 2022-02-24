@@ -9,7 +9,7 @@ import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
-import { eventClearActive, eventSetActive } from '../../actions/events';
+import { eventClearActive, eventSetActive, eventSlotSelected } from '../../actions/events';
 import { AddNewFab } from '../ui/AddNewFab';
 import { DeleteEventFab } from '../ui/DeleteEventFab';
 
@@ -49,6 +49,9 @@ export const CalendarScreen = () => {
     const onSelectSlot = (e) => {
         if (active) {
             dispatch(eventClearActive());
+        } else {
+            dispatch(eventSlotSelected(e.start, moment(e.start).add(1, 'hours').toDate()));
+            dispatch(uiOpenModal());
         }
     };
 

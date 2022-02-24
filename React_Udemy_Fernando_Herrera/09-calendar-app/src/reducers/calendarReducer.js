@@ -16,7 +16,8 @@ const initialState = {
             }
         }
     ],
-    active: null
+    active: null,
+    selectedSlot: null
 };
 
 export const calendarReducer = (state = initialState, action) => {
@@ -24,7 +25,8 @@ export const calendarReducer = (state = initialState, action) => {
         case types.EVENT_SET_ACTIVE:
             state = {
                 ...state,
-                active: action.payload
+                active: action.payload,
+                selectedSlot: null
             }
         break;
         case types.EVENT_ADD_NEW:
@@ -57,6 +59,14 @@ export const calendarReducer = (state = initialState, action) => {
                 active: null
             };
             break;
+        case types.EVENT_SLOT_SELECTED:
+            state = {
+                ...state,
+                selectedSlot: {
+                    ...action.payload
+                }
+            };
+            break
         default:
             break;
     }

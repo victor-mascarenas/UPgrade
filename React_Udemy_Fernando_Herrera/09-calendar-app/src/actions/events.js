@@ -22,3 +22,11 @@ export const eventUpdated = (event) => ({
 export const eventDeleted = () => ({
     type: types.EVENT_DELETED
 });
+
+export const eventSlotSelected = (start, end) => ({
+    type: types.EVENT_SLOT_SELECTED,
+    payload: {
+        start,
+        end
+    }
+});

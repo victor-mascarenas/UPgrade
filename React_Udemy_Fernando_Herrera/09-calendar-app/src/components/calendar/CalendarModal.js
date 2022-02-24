@@ -33,14 +33,20 @@ export const CalendarModal = () => {
     const [titleValid, setTitleValid] = useState(true);
     const dispatch = useDispatch();
     const {modalOpen} = useSelector(state => state.ui);
-    const {active} = useSelector(state => state.calendar);
+    const {active, selectedSlot} = useSelector(state => state.calendar);
     useEffect(() => {
         if (active) {
             setFormValues(active);
+        } else if (selectedSlot) {
+            setFormValues({
+                ...initEvent,
+                start: selectedSlot.start,
+                end: selectedSlot.end
+            });
         } else {
             setFormValues(initEvent);
         }
-    }, [active]);
+    }, [active, selectedSlot]);
 
     const {notes, title, start, end} = formValues;
 
