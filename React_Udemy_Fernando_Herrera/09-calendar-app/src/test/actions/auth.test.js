@@ -1,9 +1,10 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import '@testing-library/jest-dom';
-import { startLogin } from '../../actions/auth';
+import { startLogin, startRegister } from '../../actions/auth';
 import { types } from '../../types/types';
 import Swal from 'sweetalert2';
+import * as fetchModule from '../../helpers/fetch';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -40,5 +41,31 @@ describe('Pruebas en las acciones de Auth', () => {
         const actions = store.getActions();
         expect(actions).toEqual([]);
         expect(Swal.fire).toHaveBeenCalledTimes(1);
+    });
+    test('StartRegister correcto', async () => {
+        const uid = '123';
+        const name = 'Carlos';
+        const token = 'ABC123ABC123';
+        fetchModule.fetchWithoutToken = jest.fn(() => ({
+            json: () => {
+                return {
+                    ok: true,
+                    uid,
+                    name,
+                    token
+                };
+            }
+        }));
+        await store.dispatch(startRegister('test@test.com', '123456', 'Test'));
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: types.AUTH_LOGIN,
+            payload: {
+                uid,
+                name
+            }
+        });
+        expect(localStorage.setItem).toHaveBeenCalledWith('token', token);
+        expect(localStorage.setItem).toHaveBeenCalledWith('token-start', expect.any(Number));
     });
 });
