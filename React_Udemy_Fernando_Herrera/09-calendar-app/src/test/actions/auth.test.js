@@ -1,7 +1,7 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import '@testing-library/jest-dom';
-import { startLogin, startRegister } from '../../actions/auth';
+import { startChecking, startLogin, startRegister } from '../../actions/auth';
 import { types } from '../../types/types';
 import Swal from 'sweetalert2';
 import * as fetchModule from '../../helpers/fetch';
@@ -18,6 +18,10 @@ jest.mock('sweetalert2', () => ({
 }));
 
 describe('Pruebas en las acciones de Auth', () => {
+    const uid = '123';
+    const name = 'Carlos';
+    const token = 'ABC123ABC123';
+    
     beforeEach(() => {
         store = mockStore(initState);
         jest.clearAllMocks();
@@ -43,9 +47,6 @@ describe('Pruebas en las acciones de Auth', () => {
         expect(Swal.fire).toHaveBeenCalledTimes(1);
     });
     test('StartRegister correcto', async () => {
-        const uid = '123';
-        const name = 'Carlos';
-        const token = 'ABC123ABC123';
         fetchModule.fetchWithoutToken = jest.fn(() => ({
             json: () => {
                 return {
@@ -67,5 +68,27 @@ describe('Pruebas en las acciones de Auth', () => {
         });
         expect(localStorage.setItem).toHaveBeenCalledWith('token', token);
         expect(localStorage.setItem).toHaveBeenCalledWith('token-start', expect.any(Number));
+    });
+    test('StartChecking correcto', async () => {
+        fetchModule.fetchWithToken = jest.fn(() => ({
+            json: () => {
+                return {
+                    ok: true,
+                    uid,
+                    name,
+                    token
+                };
+            }
+        }));
+        await store.dispatch(startChecking());
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: types.AUTH_LOGIN,
+            payload: {
+                uid,
+                name
+            }
+        });
+        expect(localStorage.setItem).toHaveBeenCalledWith('token', token);
     });
 });
